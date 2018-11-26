@@ -1,2 +1,36 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <h2>Notre sélection d'armes</h2>
+  <div class="selection-separation"></div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= asset_path "papygun1.JPG" %>');">
+        <div class="card-category">Fusils de chasse</div>
+        <div class="card-description">
+          <h2>Le Gun de Papy</h2>
+        </div>
+        <div class="card-price">500,00 €</div>
+        <a class="card-link" href="#" ></a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= asset_path "beretta.JPG" %>');">
+        <div class="card-category">Pistolet</div>
+        <div class="card-description">
+          <h2>El pistol</h2>
+        </div>
+        <div class="card-price">350,00 €</div>
+        <a class="card-link" href="#" ></a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= asset_path "arcduturfu.jpeg" %>');">
+        <div class="card-category">Armes blanches</div>
+        <div class="card-description">
+          <h2>L'arc du Turfu</h2>
+        </div>
+        <div class="card-price">250,00 €</div>
+        <a class="card-link" href="#" ></a>
+      </div>
+    </div>
+  </div>
+</div>
