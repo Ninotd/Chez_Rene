@@ -1,5 +1,9 @@
 {
-  "name": "Chez_René",
+  "name": "Chez_Rene",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "bootstrap": "3",
+    "jquery": "^3.3.1"
+  }
 }
