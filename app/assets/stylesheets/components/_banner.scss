@@ -1,0 +1,44 @@
+.banner {
+  color: white;
+  text-align: center;
+  height: 550px;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.banner-content {
+  width: 600px;
+  align-self: center;
+}
+.banner h1 {
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+}
+.banner p {
+  font-size: 20px;
+  font-weight: lighter;
+  color: rgb(255, 255, 255);
+  opacity: 0.6;
+  margin-bottom: 30px;
+}
+
+#home-search-bar {
+  margin-top: 16px;
+  background-color: white;
+  width: 879px;
+  border-radius: 7px;
+  height: 37px;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p {
+    color: black;
+    margin-bottom: 0px;
+  }
+}
