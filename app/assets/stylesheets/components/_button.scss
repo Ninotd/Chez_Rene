@@ -5,6 +5,10 @@
   font-size: 13px;
 }
 
+#sign-in-modal-button:hover {
+  text-decoration: underline;
+}
+
 #ajoute-arme-modal-button {
   background-color: #231F20;
   color: white;
@@ -12,6 +16,10 @@
   font-size: 13px;
   padding: 5px 20px;
   border: 1px solid #fff;
+}
+
+#ajoute-arme-modal-button:hover {
+  text-decoration: underline;
 }
 
 .log-in-button-in-modal {
