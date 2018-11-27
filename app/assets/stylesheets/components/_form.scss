@@ -1,0 +1,57 @@
+.form-banner{
+  color: white;
+  text-align: center;
+  height: calc(60vh - 70px);
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner h1 {
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+}
+
+.banner p {
+  font-size: 25px;
+  font-weight: lighter;
+  color: rgb(255, 255, 255);
+  opacity: 0.6;
+  margin-bottom: 30px;
+}
+
+.form {
+  margin-top: 20px;
+  background-color: white
+}
+
+
+.labels {
+  font-size: 15px;
+}
+
+.btn-primary {
+  background-color : #221F20 ;
+  border-color : white;
+  font-size : 14px;
+  transition: all .5s ease;
+}
+
+.btn-primary:hover {
+  background-color: white;
+  border-color : black;
+  color : black;
+}
+
+.submit {
+  text-align:center
+}
+
+#gun_category {
+  margin-left : 10px;
+  border-radius : 1px;
+  font-family: "Open Sans", "Helvetica", "sans-serif";
+  font-size: 14px;
+}
