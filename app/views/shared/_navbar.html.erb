@@ -1,0 +1,101 @@
+<div class="navbar-chez-rene">
+  <!-- Logo -->
+  <a href="/" class="navbar-header-logo">
+    <img src="https://banner2.kisspng.com/20180420/tlw/kisspng-hexagone-map-departments-of-france-angle-hexagone-5ad998bc4ac387.6088351015242098523062.jpg" alt="logo">
+  </a>
+
+  <!-- Right Navigation -->
+  <div class="navbar-chez-rene-right hidden-xs hidden-sm">
+    <% if user_signed_in? %>
+      <%= link_to "Ajouter une arme", new_gun_path, class: "navbar-chez-rene-item navbar-chez-rene-link ajouter-arme", id: "ajouter-arme" %>
+    <% else %>
+      <button type="button" id="ajoute-arme-modal-button" data-toggle="modal" data-target="#AddWeaponModal">Ajouter une arme</button>
+    <% end %>
+
+    <div class="dropdown">
+      <button class="dropbtn" id="plus-infos">Plus d'infos <i class="fas fa-angle-down"></i></button>
+      <div class="dropdown-content">
+        <a href="#">Comment ça marche</a>
+        <a href="#">Louer une arme</a>
+        <a href="#">Sécurité</a>
+        <a href="#">Nos coordonnées</a>
+      </div>
+    </div>
+    <% if user_signed_in? %>
+      <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "logout-link") %>
+      <img src='https://img-4.linternaute.com/mpJIfSIY4U_FrOLSL4bUhIG0zNU=/1240x/smart/65b26c08079a4e258822ca4a79837ca3/ccmcms-linternaute/1933463.jpg' class="avatar-large"/>
+    <% else %>
+      <button type="button" id="sign-in-modal-button" data-toggle="modal" data-target="#ConnexionModal">Connexion</button>
+      <%= link_to "S'inscrire", new_user_registration_path, class: "navbar-chez-rene-item navbar-chez-rene-link" %>
+    <% end %>
+  </div>
+</div>
+
+
+<!-- Modal on connexion button-->
+
+<div class="modal fade" id="ConnexionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Se connecter</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+            <%= f.input :password,
+                        required: false,
+                        input_html: { autocomplete: "current-password" } %>
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            <input type="hidden" name="url" value="">
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Log in", class: "log-in-button-in-modal" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links_on_connexion_navbar_modal" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal on ajouter une arme button-->
+
+<div class="modal fade" id="AddWeaponModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Se connecter</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+            <%= f.input :password,
+                        required: false,
+                        input_html: { autocomplete: "current-password" } %>
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            <input type="hidden" name="url" value="add">
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Log in", class: "log-in-button-in-modal" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links_on_connexion_navbar_modal" %>
+      </div>
+    </div>
+  </div>
+</div>
