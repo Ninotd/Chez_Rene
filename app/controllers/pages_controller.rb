@@ -4,5 +4,4 @@ class PagesController < ApplicationController
   def home
   #   # @top_guns #coder le top 3 des guns
   end
-
 end
