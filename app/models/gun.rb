@@ -9,4 +9,6 @@ class Gun < ApplicationRecord
   }
   validates :price, presence: true
 
+  mount_uploader :photo, PhotoUploader
+
 end
