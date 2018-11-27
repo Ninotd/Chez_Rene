@@ -6,9 +6,9 @@ class GunsController < ApplicationController
 #     @user = current_user
 #   end
 
-#   def new
-#       @gun = Gun.new
-#   end
+  # def new
+  #     @gun = Gun.new
+  # end
 
 #   def show
 #     @gun = Gun.find(params[:id])

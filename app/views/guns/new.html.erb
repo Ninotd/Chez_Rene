@@ -1,0 +1,9 @@
+<%= simple_form_for(@gun) do |f| %>
+  <%= f.input :name %>
+  <%= f.label :category %>
+  <%= f.select :category,  Gun::ARMES %>
+  <%= f.input :description %>
+  <%= f.input :year_of_production %>
+  <%= f.input :price %>
+  <%= f.submit "add your gun", class: "btn btn-primary" %>
+<% end %>
