@@ -8,6 +8,7 @@ class GunsController < ApplicationController
 
   def new
     @gun = Gun.new
+    authorize @gun
   end
 
   def show
@@ -16,7 +17,8 @@ class GunsController < ApplicationController
 
   def create
     @gun = Cocktail.new(gun_params)
-    @gun.user = @user
+    authorize @gun
+    @gun.user = current_user
     if @gun.save
       redirect_to gun_path(@gun)
     else

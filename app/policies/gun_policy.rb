@@ -10,10 +10,10 @@ class GunPolicy < ApplicationPolicy
   end
 
   def create?
-    record.user = user
+    record.user == user
   end
 
   def update?
-    record.user = user
+    record.user == user
   end
 end
