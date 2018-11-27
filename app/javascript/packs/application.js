@@ -1,4 +1,9 @@
 import "bootstrap";
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').focus()
-})
+import $ from 'jquery';
+import 'select2';
+
+
+$(document).ready(function() {
+    $('select').select2();
+});
+
