@@ -107,4 +107,25 @@
 
 #plus-infos {
   margin-left: 10px;
+  margin-right: 10px;
+}
+
+.logout-link {
+  color: white;
+  font-size: 13px;
+  margin-right: 20px;
+}
+
+.logout-link:hover {
+  color: white;
+}
+
+.avatar {
+  width: 30px;
+  border-radius: 50%;
+}
+
+.avatar-large {
+  width: 50px;
+  border-radius: 50%;
 }
