@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.4.5'
 
+gem "geocoder"
 gem 'carrierwave', '~> 1.2'
 gem 'cloudinary', '~> 1.9.1'
 gem 'devise'

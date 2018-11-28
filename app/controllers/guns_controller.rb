@@ -4,6 +4,16 @@ class GunsController < ApplicationController
 
   def index
     @guns = policy_scope(Gun).order(created_at: :desc)
+
+    @guns = Gun.where.not(latitude: nil, longitude: nil)
+
+    @markers = @guns.map do |gun|
+      {
+        lng: gun.longitude,
+        lat: gun.latitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { gun: gun })
+      }
+    end
   end
 
   def new
@@ -54,6 +64,6 @@ class GunsController < ApplicationController
   end
 
   def gun_params
-    params.require(:gun).permit(:name, :category, :description, :price, :year_of_production)
+    params.require(:gun).permit(:name, :category, :description, :price, :year_of_production, :address, :photo)
   end
 end

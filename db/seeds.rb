@@ -7,6 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+puts "Cleaning the db ..."
+users = User.all
+users.each {|user| user.destroy}
+guns = Gun.all
+guns.each {|gun| gun.destroy}
+
 puts "Creating 10 fake users"
 count = 0
 5.times do
@@ -25,9 +31,12 @@ end
   gun = Gun.new(
     name: Faker::FunnyName.name,
     category: armes[rand(armes.length)],
+    address: "16 villa gaudelet, 75011 Paris",
     price: rand(30..200),
-    user_id: rand(0..4),
+    user_id: User.first.id,
     photo: "https://picsum.photos/200/300/?random"
     )
   gun.save
 end
+
+puts "Well done"
