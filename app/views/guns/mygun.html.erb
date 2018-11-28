@@ -12,28 +12,26 @@
     </div>
     <div class="mes-armes">
       <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
           <% @guns.each do |gun| %>
-              <div class="col-xs-12 col-sm-12 col-md-12 ">
-                <%= link_to gun_path(gun) do %>
-                  <div class="card-my-profile">
-                    <img src="<%= cl_image_path("https://res.cloudinary.com/djoaky4rc/image/upload/v1543330661/papygun1.jpg") %>" class="product-image hidden-xs">
-                    <div class='product-body'>
-                      <h3><%= gun.name %></h3>
-                      <p><%= gun.category %></p>
-                      <p><%= gun.price %> €/jour</p>
-                    </div>
-                    <ul class="list-inline product-controls hidden-sm hidden-xs">
-                      <%= link_to edit_gun_path(gun) do %>
-                        <li>Modifier l'annonce</li>
-                      <% end %>
-                      <%= link_to gun_path(gun),
-                          method: :delete,
-                          data: { confirm: "Are you sure?" } do %>
-                        <li><i class="fas fa-trash-alt"></i></li>
-                      <% end %>
-                    </ul>
+                <div class="card-my-profile">
+                  <img src="<%= cl_image_path("https://res.cloudinary.com/djoaky4rc/image/upload/v1543330661/papygun1.jpg") %>" class="product-image hidden-xs">
+                  <div class='product-body'>
+                    <h3><%= gun.name %></h3>
+                    <p><%= gun.category %></p>
+                    <p><%= gun.price %> €/jour</p>
                   </div>
-                <% end %>
+                  <ul class="list-inline product-controls hidden-sm hidden-xs">
+                    <%= link_to edit_gun_path(gun), class: "edit-gun" do %>
+                      <li>Modifier l'annonce</li>
+                    <% end %>
+                    <%= link_to gun_path(gun),
+                        method: :delete,
+                        data: { confirm: "Are you sure?" } do %>
+                      <li><i class="fas fa-trash-alt" id="trash-gun"></i></li>
+                    <% end %>
+                  </ul>
+                </div>
               <% end %>
             </div>
     </div>
