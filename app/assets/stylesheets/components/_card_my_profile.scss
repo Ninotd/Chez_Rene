@@ -1,0 +1,63 @@
+.card-my-profile {
+  display: flex;
+  height: 300px;
+  justify-content: space-between;
+  align-items: center;
+  height: 175px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  background-color: #f2eff0;
+}
+
+.card-my-profile:hover {
+  background-color: #eaeaea;
+}
+
+.product-image {
+  width: 240px;
+  height: 160px;
+  border-radius: 3px;
+}
+
+.product-body {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 300px;
+  flex-grow: 1;
+  margin-left: 15px;
+  h3 {
+    margin-top: 0px;
+    margin-bottom: 20px;
+
+  }
+  p {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+}
+
+.product-controls {
+  display: flex;
+}
+
+#trash-gun {
+  text-decoration: none;
+  margin-right: 32px;
+  margin-left: 24px;
+  color: #231F20;
+}
+
+#trash-gun:hover {
+  color: #b5052e;
+}
+
+.edit-gun {
+  text-decoration: none;
+  color: #231F20;
+}
+
+.edit-gun:hover {
+  text-decoration: underline;
+  color: #231F20;
+}

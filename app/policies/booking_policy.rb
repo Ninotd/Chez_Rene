@@ -1,15 +1,12 @@
-class GunPolicy < ApplicationPolicy
+class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
 
-  def show?
-    true
+  def create?
+   true
   end
 
-  def create?
-    record.user == user
-  end
 end

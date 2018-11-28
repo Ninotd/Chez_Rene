@@ -1,9 +1,39 @@
-<%= @guns %>
-
-<div
-  id="map"
-  style="width: 100%;
-  height: 600px;"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
+<div class="content">
+  <div class="cards">
+    <div class="row">
+      <% @guns.each do |gun| %>
+      <div class="col-xs-12 col-sm-4">
+        <%= link_to gun_path(gun) do %>
+          <div class="card">
+            <div class="card-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= gun.photo %>);">
+            </div>
+            <div class="card-body">
+              <div class="card-category">
+                <h2><%= gun.category %></h2>
+              </div>
+              <div class="card-description">
+                <div class="card-name">
+                  <h2><%= gun.name %></h2>
+                </div>
+                <div class="card-price">
+                  <%= gun.price %> €
+                  <p class="jour">/jour</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div id="map">
+     <div
+      id="map"
+      style="width: 100%;
+      height: 600px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+    ></div>
+  </div>
+</div>
