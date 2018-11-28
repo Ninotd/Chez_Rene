@@ -1,6 +1,7 @@
 class GunsController < ApplicationController
   before_action :set_gun, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:show, :index]
+  skip_after_action :verify_authorized, only: [ :mygun, :destroy, :edit, :update ]
 
   def index
     @guns = policy_scope(Gun).order(created_at: :desc)
@@ -28,23 +29,24 @@ class GunsController < ApplicationController
   end
 
   def edit
-    authorize @gun
   end
 
   def update
-    authorize @gun
     @gun.update(gun_params)
-    if @gun.save?
-      redirect_to gun_path(@gun)
+    if @gun.save
+      redirect_to monprofil_guns_path
     else
       render :new
     end
   end
 
   def destroy
-    authorize @gun
     @gun.destroy
-    redirect_to guns_path
+    redirect_to monprofil_guns_path
+  end
+
+  def mygun
+    @guns = current_user.guns
   end
 
   private

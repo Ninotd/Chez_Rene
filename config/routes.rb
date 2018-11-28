@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  resources :guns
+  resources :guns do
+    collection do
+      get '/mon-profil', to: "guns#mygun", as: :monprofil
+    end
+  end
+
   resources :bookings do
     resources :reviews, only: [ :index, :new, :create ]
   end
