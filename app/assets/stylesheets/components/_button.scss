@@ -34,3 +34,29 @@
   color: white;
   text-decoration: underline;
 }
+
+.btn-primary {
+  background-color : #221F20 ;
+  padding: 13px 15px;
+  border-color : white;
+  font-size : 14px;
+  transition: all .5s ease;
+}
+
+.btn-primary:hover {
+  background-color: white;
+  border-color : black;
+  color : black;
+}
+
+.weapon-reserve-btn {
+  margin-top: 25px;
+  background-color: #231F20;
+  color: white;
+}
+
+.weapon-reserve-btn:hover {
+  text-decoration: underline;
+  background-color: #221F20;
+  color : white;
+}

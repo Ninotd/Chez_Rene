@@ -8,7 +8,11 @@
     <div id="home-search-bar">
       <p>Paris</p>
     </div>
-    <%= link_to "Feu !", guns_path, class: "btn weapon-reserve-btn search-bar-child-3" %>
+    <% if user_signed_in? %>
+      <%= link_to "Feu !", guns_path, class: "btn weapon-reserve-btn search-bar-child-3" %>
+    <% else %>
+      <button type="button" class="btn weapon-reserve-btn search-bar-child-3" data-toggle="modal" data-target="#guns">Feu !</button>
+    <% end %>
   </div>
 </div>
 <div class="container">
@@ -90,36 +94,34 @@
 </div>
 
 
-   <!--   </div> -->
-    <!-- </div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path("https://res.cloudinary.com/djoaky4rc/image/upload/v1543330660/beretta.jpg") %>');">
-        <div class="card-category">
-          <h2>Pistolet</h2>
-        </div>
-        <div class="card-description">
-          <div class="card-name">
-            <h2>El pistol</h2>
+<div class="modal fade" id="guns" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Se connecter</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+            <%= f.input :password,
+                        required: false,
+                        input_html: { autocomplete: "current-password" } %>
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            <input type="hidden" name="url" value="guns">
           </div>
-          <div class="card-price"> 350,00 € </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Log in", class: "log-in-button-in-modal" %>
           </div>
-          <a class="card-link" href="#" ></a>
-        </div>
+        <% end %>
+
+        <%= render "devise/shared/links_on_connexion_navbar_modal" %>
+      </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path("https://res.cloudinary.com/djoaky4rc/image/upload/v1543330660/arcduturfu.jpg") %>');">
-        <div class="card-category">
-          <h2>Armes blanches</h2>
-        </div>
-        <div class="card-description">
-          <div class="card-name">
-            <h2>L'arc du Turfu</h2>
-          </div>
-          <div class="card-price"> 250,00 € </div>
-          </div>
-          <a class="card-link" href="#" ></a>
-       </div>
-    </div> -->
-<!--   </div>
+  </div>
 </div>
- -->

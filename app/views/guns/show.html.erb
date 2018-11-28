@@ -19,6 +19,7 @@
               <li><p class="weapon-info-category">Catégorie : <%= @gun.category %></p></li>
               <li><p class="weapon-info-category">Année de production : <%= @gun.year_of_production %></p></li>
               <li><p class="weapon-info-category">Propriétaire : <%= @gun.user.email %></p></li>
+              <li><p class="weapon-info-category">Adresse : <%= @gun.address %></p></li>
             </ul>
           </div>
           <% if current_user == @gun.user %>
