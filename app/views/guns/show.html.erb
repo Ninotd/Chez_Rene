@@ -21,10 +21,12 @@
               <li><p class="weapon-info-category">Propriétaire : <%= @gun.user.email %></p></li>
             </ul>
           </div>
-          <% if user_signed_in? %>
-          <%= link_to "Reserver cette arme", new_gun_booking_path(@gun), class: "", id: "reserver-arme" %> %>
+          <% if current_user == @gun.user %>
+            <%= link_to  "Voir cette arme dans mon profil", monprofil_guns_path, class: "btn btn-primary" %>
+          <% elsif user_signed_in? %>
+            <%= link_to "Reserver cette arme", new_gun_booking_path(@gun), class: "btn btn-primary" %>
           <% else %>
-          <button type="button" class="btn weapon-reserve-btn" data-toggle="modal" data-target="#ConnexionModal">Réserver cette arme</button>
+            <button type="button" class="btn weapon-reserve-btn" data-toggle="modal" data-target="#ConnexionModal">Réserver cette arme</button>
           <% end %>
         </div>
         <div class="weapon-image">
