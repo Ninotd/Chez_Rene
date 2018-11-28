@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :guns do
+    resources :bookings, only: [:new, :create] do
+      resources :reviews, only: [ :index, :new, :create ]
+    end
     collection do
       get '/mon-profil', to: "guns#mygun", as: :monprofil
     end
