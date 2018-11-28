@@ -21,7 +21,11 @@
               <li><p class="weapon-info-category">Propriétaire : <%= @gun.user.email %></p></li>
             </ul>
           </div>
-          <button type="button" class="btn weapon-reserve-btn" data-toggle="modal" data-target="#exampleModal">Réserver cette arme</button>
+          <% if user_signed_in? %>
+          <%= link_to "Reserver cette arme", new_gun_booking_path(@gun), class: "", id: "reserver-arme" %> %>
+          <% else %>
+          <button type="button" class="btn weapon-reserve-btn" data-toggle="modal" data-target="#ConnexionModal">Réserver cette arme</button>
+          <% end %>
         </div>
         <div class="weapon-image">
           <%= image_tag 'https://images.unsplash.com/photo-1517651468335-5164984ba2c5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=12fc40a40c97ee5fc96d4e42cfd0f121&auto=format&fit=crop&w=2887&q=80' %>
@@ -31,24 +35,37 @@
   </div>
 </div>
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ConnexionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Réservation d'une arme</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Se connecter</h4>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <h3><%= link_to 'Commander', new_booking_path, class: "btn weapon-reserve-btn"%></h3>
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+            <%= f.input :password,
+                        required: false,
+                        input_html: { autocomplete: "current-password" } %>
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            <input type="hidden" name="url" value="book-weapon">
+
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Log in", class: "log-in-button-in-modal" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links_on_connexion_navbar_modal" %>
       </div>
     </div>
   </div>
 </div>
+
+
