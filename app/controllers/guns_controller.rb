@@ -34,7 +34,7 @@ class GunsController < ApplicationController
   def update
     authorize @gun
     @gun.update(gun_params)
-    if @gun.save?
+    if @gun.save
       redirect_to gun_path(@gun)
     else
       render :new
