@@ -1,0 +1,28 @@
+.content {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  justify-content: space-around;
+}
+.cards {
+  width: 65%;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+.card-body {
+  color: black;
+}
+
+#map {
+  margin-top: 20px;
+  width: 35%;
+  height: 700px;
+  flex: 0 0 450px;
+  height: 100vh;
+  position: sticky !important;
+  top: 0 !important;
+  background-color: white;
+}
