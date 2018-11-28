@@ -9,6 +9,12 @@ require 'faker'
 User.destroy_all
 Gun.destroy_all
 
+puts "Cleaning the db ..."
+users = User.all
+users.each {|user| user.destroy}
+guns = Gun.all
+guns.each {|gun| gun.destroy}
+
 puts "Creating 10 fake users"
 count = 0
 5.times do
@@ -28,11 +34,12 @@ puts "Creating 15 fake guns"
   gun = Gun.new(
     name: Faker::FunnyName.name,
     category: armes[rand(armes.length)],
+    address: "16 villa gaudelet, 75011 Paris",
     price: rand(30..200),
     user: User.all.sample,
+    photo: "https://picsum.photos/200/300/?random"
     )
   gun.remote_photo_url = url
   gun.save!
 end
-
 puts "Seed is done"
