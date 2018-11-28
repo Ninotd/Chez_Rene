@@ -1,0 +1,127 @@
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://www.armurerie-francaise.com/skin/frontend/fem/armurerie/images/bg-img.jpg');">
+  <div class="banner-content">
+    <h1>Bien mieux qu'une arme <br> de location</h1>
+    <p>Réservez des armes uniques auprès de chasseurs locaux</p>
+  </div>
+  <div class="parent-search-bar">
+    <p class="search-bar-child-1">Chercher des armes à </p>
+    <div id="home-search-bar">
+      <p>Paris</p>
+    </div>
+    <% if user_signed_in? %>
+      <%= link_to "Feu !", guns_path, class: "btn weapon-reserve-btn search-bar-child-3" %>
+    <% else %>
+      <button type="button" class="btn weapon-reserve-btn search-bar-child-3" data-toggle="modal" data-target="#guns">Feu !</button>
+    <% end %>
+  </div>
+</div>
+<div class="container">
+  <h2>Nos meilleures armes du moment</h2>
+  <div class="selection-separation"></div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 ">
+
+      <div class="card">
+
+        <div class="card-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path("https://res.cloudinary.com/djoaky4rc/image/upload/v1543330661/papygun1.jpg") %>');">
+        </div>
+
+        <div class="card-body">
+          <div class="card-category">
+            <h2>Fusils de chasse</h2>
+          </div>
+          <div class="card-description">
+            <div class="card-name">
+              <h2>Le Gun de Papy</h2>
+            </div>
+            <div class="card-price">
+              500,00 €
+              <p class="jour">/jour</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 ">
+
+      <div class="card">
+
+        <div class="card-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path("https://res.cloudinary.com/djoaky4rc/image/upload/v1543330661/papygun1.jpg") %>');">
+        </div>
+
+        <div class="card-body">
+          <div class="card-category">
+            <h2>Fusils de chasse</h2>
+          </div>
+          <div class="card-description">
+            <div class="card-name">
+              <h2>Le Gun de Papy</h2>
+            </div>
+            <div class="card-price">
+              500,00 €
+              <p class="jour">/jour</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 ">
+
+      <div class="card">
+
+        <div class="card-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path("https://res.cloudinary.com/djoaky4rc/image/upload/v1543330661/papygun1.jpg") %>');">
+        </div>
+
+        <div class="card-body">
+          <div class="card-category">
+            <h2>Fusils de chasse</h2>
+          </div>
+          <div class="card-description">
+            <div class="card-name">
+              <h2>Le Gun de Papy</h2>
+            </div>
+            <div class="card-price">
+              500,00 €
+              <p class="jour">/jour</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="guns" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Se connecter</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+            <%= f.input :password,
+                        required: false,
+                        input_html: { autocomplete: "current-password" } %>
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            <input type="hidden" name="url" value="guns">
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Log in", class: "log-in-button-in-modal" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links_on_connexion_navbar_modal" %>
+      </div>
+    </div>
+  </div>
+</div>
