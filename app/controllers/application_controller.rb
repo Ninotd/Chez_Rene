@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if params[:url] == "add"
       new_gun_path
-    elsif params[:url] == "book-weapon"
-      new_gun_booking(params[:id])
+    elsif params[:url] == "guns"
+      guns_path
     else
       root_path
     end
