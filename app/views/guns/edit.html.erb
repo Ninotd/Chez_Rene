@@ -23,6 +23,13 @@
         <div class="form-group">
           <%= f.input :price, label: 'Prix / jour', label_html: { class: 'labels' }%>
         </div>
+        <div class="form-group">
+          <%= f.input :address, label: 'Adresse de votre fusil', label_html: { class: 'labels' }%>
+        </div>
+        <div class="form-group">
+          <%= f.input :photo, label: 'Photo', label_html: { class: 'labels' }%>
+          <%= f.input :photo_cache, as: :hidden %>
+        </div>
         <div class="form-group submit">
           <%= f.submit "Modifier l'arme", class: "btn btn-primary"%>
         </div>

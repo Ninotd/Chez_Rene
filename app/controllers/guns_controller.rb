@@ -1,7 +1,7 @@
 class GunsController < ApplicationController
   before_action :set_gun, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:show, :index]
-  skip_after_action :verify_authorized, only: [ :mygun, :destroy, :edit, :update ]
+  skip_before_action :authenticate_user!, only: [:show, :index, :topguns]
+  skip_after_action :verify_authorized, only: [ :mygun, :destroy, :edit, :update, :topguns ]
 
   def index
     @guns = policy_scope(Gun).order(created_at: :desc)
@@ -57,6 +57,10 @@ class GunsController < ApplicationController
 
   def mygun
     @guns = current_user.guns
+  end
+
+  def topguns
+    @topguns = Gun.first(3)
   end
 
   private
