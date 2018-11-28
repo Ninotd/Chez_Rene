@@ -28,9 +28,9 @@
 }
 
 #home-search-bar {
-  margin-top: 16px;
+  margin-top: 0px;
   background-color: white;
-  width: 879px;
+  width: 300px;
   border-radius: 7px;
   height: 37px;
   align-self: center;
@@ -41,4 +41,20 @@
     color: black;
     margin-bottom: 0px;
   }
+}
+
+.parent-search-bar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+  width: 745px;
+}
+
+.search-bar-child-1 {
+  margin: 0px;
+}
+
+.search-bar-child-3 {
+  margin: 0px;
+  width: 90px;
 }

@@ -1,0 +1,35 @@
+.container {
+  margin: 0 auto;
+  width: 1100px;
+}
+
+.mon-profil {
+  display:flex;
+}
+
+.mes-infos {
+  flex: 0 0 500px;
+}
+
+.tabs {
+  background: #F4F4F4;
+  display: flex;
+  padding: 24px 10px 0 10px;
+  justify-content: space-around;
+}
+
+.tab {
+  font-weight: bold;
+  margin-top: 12.5px;
+  margin-bottom: 15px;
+}
+
+.tab.active {
+  border-bottom: 8px solid #231F20;
+}
+
+#mon-profil-index {
+  text-align: center;
+  margin-top: 10px;
+}
+

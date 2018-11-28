@@ -1,13 +1,29 @@
+
 .weapon-banner {
   display: flex;
+  margin-top: 20px;
 }
 
 .weapon-info {
+  position: relative;
   width: 35%;
   background-color: #FAFBFC;
   padding: 15px;
   text-align: center;
   padding-top: 45px;
+}
+
+.back-to-index-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 16px;
+  color: #c1bdbd;
+}
+
+.back-to-index-button:hover {
+  color: #302f2f;
+  cursor: pointer;
 }
 
 .weapon-info-name {
