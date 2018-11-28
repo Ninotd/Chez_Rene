@@ -23,7 +23,7 @@ end
 
 puts "Creating 15 fake guns"
 15.times do
-  url = "https://picsum.photos/200/300/?random"
+  url = "https://source.unsplash.com/500x400/?gun"
   armes = ["Fusils de chasse", "Fusils à pompe", "Carabines", "Pistolets", "Armes blanches", "Fusils d'assault"]
   gun = Gun.new(
     name: Faker::FunnyName.name,
