@@ -3,12 +3,16 @@
     <h1>Bien mieux qu'une arme <br> de location</h1>
     <p>Réservez des armes uniques auprès de chasseurs locaux</p>
   </div>
-  <div id="home-search-bar">
-    <p>Search Bar to add</p>
+  <div class="parent-search-bar">
+    <p class="search-bar-child-1">Chercher des armes à </p>
+    <div id="home-search-bar">
+      <p>Paris</p>
+    </div>
+    <%= link_to "Feu !", guns_path, class: "btn weapon-reserve-btn search-bar-child-3" %>
   </div>
 </div>
 <div class="container">
-  <h2>Notre sélection d'armes</h2>
+  <h2>Nos meilleures armes du moment</h2>
   <div class="selection-separation"></div>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-4 ">

@@ -5,6 +5,11 @@
     <div class="col-xs-12">
       <div class="weapon-banner">
         <div class="weapon-info">
+          <%= link_to guns_path do %>
+            <div class="back-to-index-button">
+              <p> <i class="fas fa-arrow-circle-left"></i> Back</p>
+            </div>
+          <% end %>
           <p class="weapon-info-name"><strong><%= @gun.name %></strong></p>
           <p class="weapon-info-description"><%= @gun.description %></p>
           <p class="weapon-info-price"><strong><%= @gun.price %>€</strong></p>
