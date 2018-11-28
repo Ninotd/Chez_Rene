@@ -22,7 +22,7 @@ class GunsController < ApplicationController
     @gun.user = current_user
     authorize @gun
     if @gun.save
-      redirect_to gun_path(@gun)
+      redirect_to monprofil_guns_path
     else
       render :new
     end
