@@ -22,7 +22,7 @@
       </div>
     </div>
     <% if user_signed_in? %>
-      <%= link_to "Mon profil", root_path, class: "navbar-chez-rene-item navbar-chez-rene-link mon-profil-link" %>
+      <%= link_to "Mon profil", monprofil_guns_path, class: "navbar-chez-rene-item navbar-chez-rene-link mon-profil-link" %>
       <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "logout-link") %>
       <img src='https://img-4.linternaute.com/mpJIfSIY4U_FrOLSL4bUhIG0zNU=/1240x/smart/65b26c08079a4e258822ca4a79837ca3/ccmcms-linternaute/1933463.jpg' class="avatar-large"/>
     <% else %>
