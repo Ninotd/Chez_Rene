@@ -1,0 +1,51 @@
+.flex-wrap-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.clickable {
+  padding: 14px;
+  width: 120px;
+  height: 120px;
+  border: 1px solid #dedede;
+  margin-bottom: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  color: #a0a0a0;
+}
+
+.newstyle {
+  padding: 14px;
+  width: 120px;
+  height: 120px;
+  border: 1px solid rgb(35, 31, 32);
+  margin-bottom: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  color: rgb(35, 31, 32);
+}
+
+.category-name {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.category-title {
+  font-size: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.category-logo {
+  height: 63px;
+}
+
+#ajout-photo {
+  font-size: 16px;
+}
