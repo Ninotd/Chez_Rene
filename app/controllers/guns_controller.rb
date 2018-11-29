@@ -8,6 +8,7 @@ class GunsController < ApplicationController
     @guns = policy_scope(Gun).order(created_at: :desc)
 
     @guns = Gun.where.not(latitude: nil, longitude: nil)
+    @guns = @guns.global_search(params[:query]) if params[:query].present?
 
     @markers = @guns.map do |gun|
       {
