@@ -5,8 +5,10 @@
   </div>
   <div class="parent-search-bar">
     <p class="search-bar-child-1">Chercher des armes à </p>
-    <div id="home-search-bar">
-      <p>Paris</p>
+    <div class="search-bar form-inline">
+      <%= form_tag guns_path, method: :get do %>
+        <%= text_field_tag :query, params[:query], :class => "form-control", placeholder: "ex. 'Paris'" %>
+      <% end %>
     </div>
     <% if user_signed_in? %>
       <%= link_to "Feu !", guns_path, class: "btn weapon-reserve-btn search-bar-child-3" %>
