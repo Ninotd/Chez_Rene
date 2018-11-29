@@ -1,4 +1,116 @@
 <div class="container">
+
+  <% if @guns == [] %>
+    <div>
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">...</div>
+        <div role="tabpanel" class="tab-pane" id="profile">...</div>
+        <div role="tabpanel" class="tab-pane" id="messages">...</div>
+        <div role="tabpanel" class="tab-pane" id="settings">...</div>
+      </div>
+
+    </div>
+
+  <% else %>
+
+    <div>
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist" id="myTabs">
+        <li role="presentation" class="active"><a href="#armurerie" aria-controls="armurerie" role="tab" data-toggle="tab">Armurerie</a></li>
+        <li role="presentation"><a href="#infos" aria-controls="infos" role="tab" data-toggle="tab">Mes infos</a></li>
+        <li role="presentation"><a href="#reservations" aria-controls="reservations" role="tab" data-toggle="tab">Mes réservations</a></li>
+        <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Mes avis</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="armurerie">
+          <div class="mes-armes">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <% @guns.each do |gun| %>
+                  <div class="card-my-profile">
+                    <img src='<%= cl_image_path gun.photo, crop: :fill%>' class="product-image hidden-xs">
+                    <div class='product-body'>
+                      <h3><%= gun.name %></h3>
+                      <p><%= gun.category %></p>
+                      <p><%= gun.price %> €/jour</p>
+                    </div>
+                    <ul class="list-inline product-controls hidden-sm hidden-xs">
+                      <%= link_to edit_gun_path(gun), class: "edit-gun" do %>
+                        <li>Modifier l'annonce</li>
+                      <% end %>
+                      <%= link_to gun_path(gun),
+                          method: :delete,
+                          data: { confirm: "Are you sure?" } do %>
+                          <li><i class="fas fa-trash-alt" id="trash-gun"></i></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="infos"></div>
+        <div role="tabpanel" class="tab-pane" id="reservations">
+          <div class="mes-reservations">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <% if @my_bookings.nil? %>
+                  <p>Vous n'avez pas de réservations</p>
+                <% else %>
+                  <% @my_bookings.each do |booking| %>
+                    <div class="card-my-profile">
+                      <img src='<%= cl_image_path booking.gun.photo, crop: :fill%>' class="product-image hidden-xs">
+                      <div class='product-body'>
+                        <p>Du <%= booking.start_date %></p>
+                        <p>au <%= booking.end_date %></p>
+                      </div>
+                      <ul class="list-inline product-controls hidden-sm hidden-xs">
+                          <li>Statut : <%= booking.confirmed %></li>
+                      </ul>
+                    </div>
+                  <% end %>
+                 <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="reviews">Holla</div>
+      </div>
+
+    </div>
+
+  <% end %>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
     <div class="row" id="mon-profil-index">
       <div class="tab active col-sm-4">
         <p>Mon armurerie</p>
@@ -37,4 +149,4 @@
             </div>
     </div>
   </div>
-</div>
+</div> -->
