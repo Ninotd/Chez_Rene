@@ -59,8 +59,16 @@ class GunsController < ApplicationController
   def monprofil
     @my_rentings = current_user.bookings
     if current_user.guns
-      @my_bookings = @guns.map do |gun|
-        gun.bookings
+      @my_bookings = current_user.guns.map do |gun|
+        gun.bookings.flatten
+      end
+      @my_reviews = []
+      @my_reviews = @my_bookings.each do |gunbookings|
+        gunbookings.each do |element|
+          if element.book_review
+          @my_reviews << element.booking_review
+          end
+        end
       end
     end
   end

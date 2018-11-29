@@ -3,4 +3,5 @@ class BookingReview < ApplicationRecord
   belongs_to :booking
 
   validates :rating, presence: true, inclusion: { in: RATINGS }
+  validates :content, presence: true
 end
