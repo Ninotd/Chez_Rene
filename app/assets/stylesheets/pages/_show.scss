@@ -41,13 +41,28 @@
 
 .weapon-image {
   width: 65%;
-  img {
-    width: 100%;
-  }
+  background-size: cover !important
 }
 
 .info-importante {
   text-decoration: underline;
 }
 
+.weapon-info-list {
+  list-style-type: none;
+  padding-inline-start: 5px
+}
 
+.weapon-info-li {
+  display: flex;
+}
+
+.show-icons {
+  margin-right : 10px;
+  padding-top: 7px;
+  font-size :10px;
+}
+
+.separation {
+  color: black
+}

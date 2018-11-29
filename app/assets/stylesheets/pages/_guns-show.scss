@@ -6,6 +6,7 @@
 }
 .cards {
   width: 65%;
+  margin-right: 10px;
 }
 
 .card {
@@ -14,6 +15,10 @@
 
 .card-body {
   color: black;
+}
+
+.card:hover {
+  opacity: 0.9
 }
 
 #map {
