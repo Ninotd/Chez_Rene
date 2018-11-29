@@ -1,4 +1,26 @@
-<div>BOOKING</div>
+<div class="wrapper-review">
+  <div class = "container ">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 ">
+        <div class="card-my-profile card-review">
+          <img src='<%= cl_image_path @booking.gun.photo, crop: :fill%>' class="product-image hidden-xs">
+            <div class='product-body'>
+              <h3><%= @booking.gun.name %></h3>
+              <p><%= @booking.gun.category %></p>
+              <p><%= @booking.gun.price %> €/jour</p>
+            </div>
+            <div>
+              Loué du <%= @booking.start_date %> au <%= @booking.end_date %> pour un montant total de <%= @booking.amount %>
+            </div>
+            <ul class="list-inline product-controls hidden-sm hidden-xs">
+              <li>Loué à XXX </li>
+              <li> Photo de l'utilisateur</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
 
 
 <div class="row form">
@@ -16,4 +38,6 @@
       <% end %>
     </div>
   </div>
+</div>
+
 </div>
