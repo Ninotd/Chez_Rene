@@ -61,9 +61,10 @@ class GunsController < ApplicationController
     @my_rentings = current_user.bookings
     if current_user.guns
       @my_bookings = current_user.guns.map { |gun| gun.bookings }.flatten
-    # @my_reviews = @my_bookings.map do |booking|
-    #     booking.booking_review
-    #   end
+      reviews = @my_bookings.map do |booking|
+        booking.booking_reviews
+      end
+      @my_reviews = reviews.flatten
     end
   end
 

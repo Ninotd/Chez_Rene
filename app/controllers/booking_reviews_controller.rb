@@ -1,5 +1,5 @@
 class BookingReviewsController < ApplicationController
-  before_action :find_booking, only: [:new,:create]
+  before_action :find_booking, only: [:new, :create]
 
   def new
     @review = BookingReview.new
@@ -11,9 +11,10 @@ class BookingReviewsController < ApplicationController
     @review.booking = @booking
     authorize @review
     if @review.save
-      redirect_to monprofil_guns_path
+      redirect_to monprofil_path
     else
-      render :new
+      flash[:alert]= "Vous avez déjà laissé un avis pour cette réservation"
+      redirect_to new_booking_booking_review_path(@booking)
     end
 
   end
