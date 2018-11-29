@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 2018_11_29_100101) do
     t.bigint "gun_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "confirmed"
-    t.boolean "finished"
+    t.string "confirmed", default: "En attente"
+    t.boolean "finished", default: false
     t.index ["gun_id"], name: "index_bookings_on_gun_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
