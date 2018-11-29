@@ -1,7 +1,8 @@
 class GunsController < ApplicationController
   before_action :set_gun, only: [:show, :edit, :update, :destroy]
+  before_action :current_user_guns, only: [:monprofil]
   skip_before_action :authenticate_user!, only: [:show, :index, :topguns]
-  skip_after_action :verify_authorized, only: [ :mygun, :destroy, :edit, :update, :topguns ]
+  skip_after_action :verify_authorized, only: [ :monprofil, :destroy, :edit, :update, :topguns ]
 
   def index
     @guns = policy_scope(Gun).order(created_at: :desc)
@@ -55,8 +56,13 @@ class GunsController < ApplicationController
     redirect_to monprofil_guns_path
   end
 
-  def mygun
-    @guns = current_user.guns
+  def monprofil
+    @my_rentings = current_user.bookings
+    if current_user.guns
+      @my_bookings = @guns.map do |gun|
+        gun.bookings
+      end
+    end
   end
 
   def topguns
@@ -67,6 +73,10 @@ class GunsController < ApplicationController
 
   def set_gun
     @gun = Gun.find(params[:id])
+  end
+
+  def current_user_guns
+    @guns = current_user.guns
   end
 
   def gun_params
