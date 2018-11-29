@@ -1,19 +1,17 @@
-const buttons = document.querySelectorAll('.clickable');
+const selectCategory = () => {
+  const buttons = document.querySelectorAll('.clickable');
 
-buttons.forEach((button) => {
-  button.addEventListener('click', (event) => {
-    buttons.forEach((button) => {
-      button.classList.remove("newstyle");
+  buttons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      buttons.forEach((button) => {
+        button.classList.remove("newstyle");
+      });
+      event.currentTarget.classList.add("newstyle");
+      const select = document.querySelector('#gun_category');
+      const category = event.currentTarget.dataset.category;
+      select.value = category;
     });
-    event.currentTarget.classList.add("newstyle");
-    const select = document.querySelector('#gun_category');
-    const category = event.currentTarget.dataset.category;
-    select.value = category;
-    console.log(category, select)
-    // console.log(select)
-    // tout les bouttons perdent leur style au click
-    // changer le style
-    // trouver la categorie du button
-    // update le select du formulaire
   });
-});
+}
+
+export default selectCategory;
