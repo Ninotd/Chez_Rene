@@ -17,3 +17,5 @@ selectCategory();
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 import 'plugins/flatpickr'
+
+import 'plugins/buttons'
