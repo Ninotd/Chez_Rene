@@ -132,6 +132,11 @@
                       </div>
                       <ul class="list-inline product-controls hidden-sm hidden-xs">
                           <li>Statut : <%= rent.confirmed %></li>
+                          <% if rent.end_date < Date.today %>
+                          <li>
+                          <div class="status">Finished</div>
+                          <%= link_to "add a review", new_booking_booking_review_path(rent) %> </li>
+                          <% end %>
                       </ul>
                       </div>
                     <% end %>
