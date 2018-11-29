@@ -6,17 +6,11 @@
 </div>
 
 <div class="row form-booking">
-    <div class="col-sm-offset-4 col-sm-4">
-      <%= simple_form_for([@gun, @booking]) do |f| %>
-        <div class="form-group">
-          <%= f.input :start_date, label: 'Date de début de location', label_html: { class: 'labels' }%>
-        </div>
-        <div class="form-group">
-          <%= f.input :end_date, label: "Date de fin de location", class: 'labels' %>
-        <div class="form-group submit">
-          <%= f.submit "Add your gun", class: "btn btn-primary"%>
-        </div>
-      <% end %>
-    </div>
+  <div class="col-sm-offset-4 col-sm-4">
+    <%= simple_form_for([@gun, @booking]) do |f| %>
+      <%= f.input :start_date, as: :string, input_html: { class: "datepicker" } %>
+      <%= f.input :end_date, as: :string, input_html: { class: "datepicker" } %>
+      <%= f.submit "Add your gun", class: "btn btn-primary"%>
+    <% end %>
   </div>
 </div>
