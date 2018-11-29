@@ -1,0 +1,43 @@
+<div class="wrapper-review">
+  <div class = "container ">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 ">
+        <div class="card-my-profile card-review">
+          <img src='<%= cl_image_path @booking.gun.photo, crop: :fill%>' class="product-image hidden-xs">
+            <div class='product-body'>
+              <h3><%= @booking.gun.name %></h3>
+              <p><%= @booking.gun.category %></p>
+              <p><%= @booking.gun.price %> €/jour</p>
+            </div>
+            <div>
+              Loué du <%= @booking.start_date %> au <%= @booking.end_date %> pour un montant total de <%= @booking.amount %>
+            </div>
+            <ul class="list-inline product-controls hidden-sm hidden-xs">
+              <li>Loué à XXX </li>
+              <li> Photo de l'utilisateur</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+
+<div class="row form">
+    <div class="col-sm-offset-4 col-sm-4">
+      <%= simple_form_for([@booking, @review]) do |f| %>
+        <div class="form-group">
+          <%= f.input :content, label: "Avis sur l'arme et son propriétaire", label_html: { class: 'labels' }%>
+        </div>
+        <div class="form-group">
+          <%= f.label :rating, class: 'labels' %>
+          <%= f.select :rating, BookingReview::RATINGS %>
+        <div class="form-group submit">
+          <%= f.submit "Laisser un avis", class: "btn btn-primary"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+</div>

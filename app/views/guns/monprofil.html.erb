@@ -142,10 +142,21 @@
               </div>
             </div>
           </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="reviews">
+          <% if @my_reviews == [] %>
+          Vous n'avez pas d'avis sur vos locations
+          <% else %>
+            <div class="reviews-card">
+              <%= @my_reviews %>
+            </div>
+          <% end %>
+
+
+        </div>
+      </div>
     </div>
   </div>
-
-  <div role="tabpanel" class="tab-pane" id="reviews">Holla</div>
 </div>
 
   <% end %>
@@ -177,7 +188,6 @@
         <p>Mes réservations</p>
       </div>
     </div>
-    <p><%=  @my_bookings %></p>
     <div class="mes-armes">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 ">

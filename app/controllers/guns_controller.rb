@@ -8,6 +8,7 @@ class GunsController < ApplicationController
     @guns = policy_scope(Gun).order(created_at: :desc)
 
     @guns = Gun.where.not(latitude: nil, longitude: nil)
+    @guns = @guns.global_search(params[:query]) if params[:query].present?
 
     @markers = @guns.map do |gun|
       {
@@ -60,9 +61,10 @@ class GunsController < ApplicationController
     @my_rentings = current_user.bookings
     if current_user.guns
       @my_bookings = current_user.guns.map { |gun| gun.bookings }.flatten
-    # @my_reviews = @my_bookings.map do |booking|
-    #     booking.booking_review
-    #   end
+      reviews = @my_bookings.map do |booking|
+        booking.booking_reviews
+      end
+      @my_reviews = reviews.flatten
     end
   end
 
