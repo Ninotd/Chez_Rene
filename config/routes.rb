@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
   end
   get '/mon-profil', to: "guns#monprofil", as: :monprofil
+  resources :bookings, only: :update
 
   resources :bookings, only: [] do
     resources :booking_reviews, only: [:new, :create]

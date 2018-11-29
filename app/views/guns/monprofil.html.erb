@@ -63,27 +63,82 @@
             </div>
           </div>
         </div>
+
         <div role="tabpanel" class="tab-pane" id="infos"></div>
+
         <div role="tabpanel" class="tab-pane" id="reservations">
-          <div class="mes-reservations">
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12">
-                <% if @my_bookings.nil? %>
-                  <p>Vous n'avez pas de réservations</p>
-                <% else %>
-                  <% @my_bookings.each do |booking| %>
+          <ul class="nav nav-tabs" role="tablist" id="myTabs">
+            <li role="presentation" class="active"><a href="#mesresas" aria-controls="mesresas" role="tab" data-toggle="tab">Mes réservations</a></li>
+            <li role="presentation"><a href="#meslocs" aria-controls="meslocs" role="tab" data-toggle="tab">Mes locations</a></li>
+          </ul>
+
+          <div class="tab-content">
+
+            <div role="tabpanel" class="tab-pane active" id="mesresas">
+             <div class="mes-reservations">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <% if @my_bookings != [] %>
+                    <% @my_bookings.each do |booking| %>
+                      <div class="card-my-profile">
+                        <img src='<%= cl_image_path booking.gun.photo, crop: :fill%>' class="product-image hidden-xs">
+                        <div class='product-body'>
+                          <p><%= booking.gun.name %></p>
+                          <p>Du <%= booking.start_date %></p>
+                          <p>au <%= booking.end_date %></p>
+                          <p>Pour <%= booking.amount %> €</p>
+                        </div>
+                        <ul class="list-inline product-controls hidden-sm hidden-xs">
+                          <li>Statut : <%= booking.confirmed %></li>
+                            <% if booking.confirmed == "En attente" %>
+                              <%= simple_form_for booking do |f| %>
+                               <%= f.submit "Accepter", class: "btn btn-primary" %>
+                               <input type="hidden" name="status" value="accept">
+                              <% end %>
+                              <%= simple_form_for booking do |f| %>
+                                 <%= f.submit "Refuser", class: "btn btn-primary" %>
+                                 <input type="hidden" name="status" value="refuse">
+                              <% end %>
+                            <% elsif booking.confirmed == "Acceptée" %>
+                              <%= simple_form_for booking do |f| %>
+                               <%= f.submit "Refuser", class: "btn btn-primary" %>
+                               <input type="hidden" name="status" value="refuse">
+                             <% end %>
+                            <% end %>
+                         </ul>
+                      </div>
+                    <% end %>
+                  <% else %>
+                    <p>Vous n'avez pas de réservations</p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="meslocs">
+            <div class="mes-locations">
+             <div class="row">
+               <div class="col-xs-12 col-sm-12 col-md-12">
+                <% if @my_rentings != [] %>
+                  <% @my_rentings.each do |rent| %>
                     <div class="card-my-profile">
-                      <img src='<%= cl_image_path booking.gun.photo, crop: :fill%>' class="product-image hidden-xs">
+                      <img src='<%= cl_image_path rent.gun.photo, crop: :fill%>' class="product-image hidden-xs">
                       <div class='product-body'>
-                        <p>Du <%= booking.start_date %></p>
-                        <p>au <%= booking.end_date %></p>
+                        <p><%= rent.gun.name %></p>
+                        <p>Du <%= rent.start_date %></p>
+                        <p>au <%= rent.end_date %></p>
+                        <p>Pour <%= rent.amount %> €</p>
                       </div>
                       <ul class="list-inline product-controls hidden-sm hidden-xs">
-                          <li>Statut : <%= booking.confirmed %></li>
+                          <li>Statut : <%= rent.confirmed %></li>
                       </ul>
-                    </div>
+                      </div>
+                    <% end %>
+                  <% else %>
+                    <p>Vous n'avez pas de locations</p>
                   <% end %>
-                 <% end %>
+                </div>
               </div>
             </div>
           </div>
@@ -100,8 +155,9 @@
 
         </div>
       </div>
-
     </div>
+  </div>
+</div>
 
   <% end %>
 
