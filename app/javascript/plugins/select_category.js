@@ -14,4 +14,4 @@ const selectCategory = () => {
   });
 }
 
-export default selectCategory;
+export { selectCategory };
