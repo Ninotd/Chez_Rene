@@ -21,13 +21,13 @@
   padding: 14px;
   width: 120px;
   height: 120px;
-  border: 1px solid blue;
+  border: 1px solid rgb(35, 31, 32);
   margin-bottom: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  color: blue;
+  color: rgb(35, 31, 32);
 }
 
 .category-name {
@@ -43,6 +43,9 @@
 }
 
 .category-logo {
-  // background-size: cover;
   height: 63px;
+}
+
+#ajout-photo {
+  font-size: 16px;
 }

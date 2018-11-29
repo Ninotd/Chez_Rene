@@ -18,28 +18,28 @@
           <%= f.input :category, as: :hidden %>
           </div>
           <div class="flex-wrap-center">
-            <div class="clickable" data-category="fusil">
-              <%= image_tag "001-gun.png", alt: "Le Gun", class: "category-logo" %>
-              <div class="category-name">Fusils</div>
+            <div class="clickable" data-category="Fusils à pompe">
+              <%= image_tag "shotgun.png", alt: "Le Gun", class: "category-logo" %>
+              <div class="category-name">Fusils à pompe</div>
             </div>
-            <div class="clickable" data-category="armes blanches">
-              <%= image_tag "002-pocket-knife.png", alt: "Le Gun", class: "category-logo" %>
+            <div class="clickable" data-category="Armes Blanches">
+              <%= image_tag "pocket-knife.png", alt: "Le Gun", class: "category-logo" %>
               <div class="category-name">Armes Blanches</div>
             </div>
-            <div class="clickable" data-category="fusils d'assault">
-              <%= image_tag "003-rifle.png", alt: "Le Gun", class: "category-logo" %>
+            <div class="clickable" data-category="Fusils d'assault">
+              <%= image_tag "big-rifle.png", alt: "Le Gun", class: "category-logo" %>
               <div class="category-name">Fusils d'assault</div>
             </div>
-            <div class="clickable" data-category="fusils de chasse">
-              <%= image_tag "001-gun.png", alt: "Le Gun", class: "category-logo" %>
+            <div class="clickable" data-category="Fusils de chasse">
+              <%= image_tag "hunting-rifle.png", alt: "Le Gun", class: "category-logo" %>
               <div class="category-name">Fusils de chasse</div>
             </div>
-            <div class="clickable" data-category="carabines">
-              <%= image_tag "002-pocket-knife.png", alt: "Le Gun", class: "category-logo" %>
+            <div class="clickable" data-category="Carabines">
+              <%= image_tag "hunting-rifle.png", alt: "Le Gun", class: "category-logo" %>
               <div class="category-name">Carabines</div>
             </div>
-            <div class="clickable" data-category="pistolets">
-              <%= image_tag "004-firearms.png", alt: "Le Gun", class: "category-logo" %>
+            <div class="clickable" data-category="Pistolets">
+              <%= image_tag "firearms.png", alt: "Le Gun", class: "category-logo" %>
               <div class="category-name">Pistolets</div>
             </div>
           </div>
@@ -56,7 +56,7 @@
         <div class="form-group">
           <%= f.input :address, label: 'Adresse de votre fusil', label_html: { class: 'labels' }%>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="ajout-photo">
           <%= f.input :photo, label: 'Photo', label_html: { class: 'labels' }%>
           <%= f.input :photo_cache, as: :hidden %>
         </div>
@@ -67,3 +67,4 @@
     </div>
   </div>
 </div>
+
