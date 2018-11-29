@@ -1,7 +1,7 @@
 
 <div class="form-banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://a.ltrbxd.com/resized/sm/upload/oy/ok/kt/6q/gran-torino-1920-1920-1080-1080-crop-000000.jpg?k=7d21e5f86e');">
   <div class="banner-content">
-    <h1>Ajoutez votre fusil</h1>
+    <h1>Ajoutez votre fusil</1>
     <p>René attend votre fusil dans son armurerie</p>
   </div>
 </div>
@@ -13,8 +13,37 @@
           <%= f.input :name, label: 'Nom de votre fusil', label_html: { class: 'labels' }%>
         </div>
         <div class="form-group">
-          <%= f.label :category, class: 'labels' %>
-          <%= f.select :category, Gun::ARMES %>
+          <label class="form-control-label string required labels">Categorie de votre fusil</label>
+          <div>
+          <%= f.input :category, as: :hidden %>
+          </div>
+          <div class="flex-wrap-center">
+            <div class="clickable" data-category="Fusils à pompe">
+              <%= image_tag "shotgun.png", alt: "Le Gun", class: "category-logo" %>
+              <div class="category-name">Fusils à pompe</div>
+            </div>
+            <div class="clickable" data-category="Armes Blanches">
+              <%= image_tag "pocket-knife.png", alt: "Le Gun", class: "category-logo" %>
+              <div class="category-name">Armes Blanches</div>
+            </div>
+            <div class="clickable" data-category="Fusils d'assault">
+              <%= image_tag "big-rifle.png", alt: "Le Gun", class: "category-logo" %>
+              <div class="category-name">Fusils d'assault</div>
+            </div>
+            <div class="clickable" data-category="Fusils de chasse">
+              <%= image_tag "hunting-rifle.png", alt: "Le Gun", class: "category-logo" %>
+              <div class="category-name">Fusils de chasse</div>
+            </div>
+            <div class="clickable" data-category="Carabines">
+              <%= image_tag "hunting-rifle.png", alt: "Le Gun", class: "category-logo" %>
+              <div class="category-name">Carabines</div>
+            </div>
+            <div class="clickable" data-category="Pistolets">
+              <%= image_tag "firearms.png", alt: "Le Gun", class: "category-logo" %>
+              <div class="category-name">Pistolets</div>
+            </div>
+          </div>
+        </div>
         <div class="form-group">
           <%= f.input :description, label: 'Description', label_html: { class: 'labels' }%>
         </div>
@@ -27,15 +56,15 @@
         <div class="form-group">
           <%= f.input :address, label: 'Adresse de votre fusil', label_html: { class: 'labels' }%>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="ajout-photo">
           <%= f.input :photo, label: 'Photo', label_html: { class: 'labels' }%>
           <%= f.input :photo_cache, as: :hidden %>
         </div>
         <div class="form-group submit">
           <%= f.submit "Ajoute ton arme", class: "btn btn-primary"%>
         </div>
-
       <% end %>
     </div>
   </div>
 </div>
+
