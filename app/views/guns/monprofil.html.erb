@@ -64,7 +64,10 @@
           </div>
         </div>
 
-        <div role="tabpanel" class="tab-pane" id="infos"></div>
+        <div role="tabpanel" class="tab-pane" id="infos">
+          <%= link_to "Mettre à jour mes informations", edit_user_registration_path %>
+          <%= cl_image_tag current_user.photo, height: 300, width: 400, crop: :fill %>
+        </div>
 
         <div role="tabpanel" class="tab-pane" id="reservations">
           <ul class="nav nav-tabs" role="tablist" id="myTabs">
