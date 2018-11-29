@@ -1,3 +1,11 @@
+<div class="content search-bar">
+  <div class="search-bar form-inline">
+    <%= form_tag guns_path, method: :get do %>
+      <%= text_field_tag :query, params[:query], :class => "form-control", placeholder: "Trouver une arme" %>
+      <%= submit_tag "Feu !", name: nil, :class => "btn weapon-search-bar-btn" %>
+    <% end %>
+  </div>
+</div>
 <div class="content">
   <div class="cards">
     <div class="row">

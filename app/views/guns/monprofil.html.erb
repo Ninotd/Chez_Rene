@@ -1,0 +1,215 @@
+<div class="container">
+
+  <% if @guns == [] %>
+    <div>
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">...</div>
+        <div role="tabpanel" class="tab-pane" id="profile">...</div>
+        <div role="tabpanel" class="tab-pane" id="messages">...</div>
+        <div role="tabpanel" class="tab-pane" id="settings">...</div>
+      </div>
+
+    </div>
+
+  <% else %>
+
+    <div>
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist" id="myTabs">
+        <li role="presentation" class="active"><a href="#armurerie" aria-controls="armurerie" role="tab" data-toggle="tab">Armurerie</a></li>
+        <li role="presentation"><a href="#infos" aria-controls="infos" role="tab" data-toggle="tab">Mes infos</a></li>
+        <li role="presentation"><a href="#reservations" aria-controls="reservations" role="tab" data-toggle="tab">Mes réservations</a></li>
+        <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Mes avis</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="armurerie">
+          <div class="mes-armes">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <% @guns.each do |gun| %>
+                  <div class="card-my-profile">
+                    <img src='<%= cl_image_path gun.photo, crop: :fill%>' class="product-image hidden-xs">
+                    <div class='product-body'>
+                      <h3><%= gun.name %></h3>
+                      <p><%= gun.category %></p>
+                      <p><%= gun.price %> €/jour</p>
+                    </div>
+                    <ul class="list-inline product-controls hidden-sm hidden-xs">
+                      <%= link_to edit_gun_path(gun), class: "edit-gun" do %>
+                        <li>Modifier l'annonce</li>
+                      <% end %>
+                      <%= link_to gun_path(gun),
+                          method: :delete,
+                          data: { confirm: "Are you sure?" } do %>
+                          <li><i class="fas fa-trash-alt" id="trash-gun"></i></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="infos"></div>
+
+        <div role="tabpanel" class="tab-pane" id="reservations">
+          <ul class="nav nav-tabs" role="tablist" id="myTabs">
+            <li role="presentation" class="active"><a href="#mesresas" aria-controls="mesresas" role="tab" data-toggle="tab">Mes réservations</a></li>
+            <li role="presentation"><a href="#meslocs" aria-controls="meslocs" role="tab" data-toggle="tab">Mes locations</a></li>
+          </ul>
+
+          <div class="tab-content">
+
+            <div role="tabpanel" class="tab-pane active" id="mesresas">
+             <div class="mes-reservations">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <% if @my_bookings != [] %>
+                    <% @my_bookings.each do |booking| %>
+                      <div class="card-my-profile">
+                        <img src='<%= cl_image_path booking.gun.photo, crop: :fill%>' class="product-image hidden-xs">
+                        <div class='product-body'>
+                          <p><%= booking.gun.name %></p>
+                          <p>Du <%= booking.start_date %></p>
+                          <p>au <%= booking.end_date %></p>
+                          <p>Pour <%= booking.amount %> €</p>
+                        </div>
+                        <ul class="list-inline product-controls hidden-sm hidden-xs">
+                          <li>Statut : <%= booking.confirmed %></li>
+                            <% if booking.confirmed == "En attente" %>
+                              <%= simple_form_for booking do |f| %>
+                               <%= f.submit "Accepter", class: "btn btn-primary" %>
+                               <input type="hidden" name="status" value="accept">
+                              <% end %>
+                              <%= simple_form_for booking do |f| %>
+                                 <%= f.submit "Refuser", class: "btn btn-primary" %>
+                                 <input type="hidden" name="status" value="refuse">
+                              <% end %>
+                            <% elsif booking.confirmed == "Acceptée" %>
+                              <%= simple_form_for booking do |f| %>
+                               <%= f.submit "Refuser", class: "btn btn-primary" %>
+                               <input type="hidden" name="status" value="refuse">
+                             <% end %>
+                            <% end %>
+                         </ul>
+                      </div>
+                    <% end %>
+                  <% else %>
+                    <p>Vous n'avez pas de réservations</p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="meslocs">
+            <div class="mes-locations">
+             <div class="row">
+               <div class="col-xs-12 col-sm-12 col-md-12">
+                <% if @my_rentings != [] %>
+                  <% @my_rentings.each do |rent| %>
+                    <div class="card-my-profile">
+                      <img src='<%= cl_image_path rent.gun.photo, crop: :fill%>' class="product-image hidden-xs">
+                      <div class='product-body'>
+                        <p><%= rent.gun.name %></p>
+                        <p>Du <%= rent.start_date %></p>
+                        <p>au <%= rent.end_date %></p>
+                        <p>Pour <%= rent.amount %> €</p>
+                      </div>
+                      <ul class="list-inline product-controls hidden-sm hidden-xs">
+                          <li>Statut : <%= rent.confirmed %></li>
+                      </ul>
+                      </div>
+                    <% end %>
+                  <% else %>
+                    <p>Vous n'avez pas de locations</p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div role="tabpanel" class="tab-pane" id="reviews">
+          <% if @my_reviews == [] %>
+          Vous n'avez pas d'avis sur vos locations
+          <% else %>
+            <div class="reviews-card">
+              <%= @my_reviews %>
+            </div>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+
+  <% end %>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+    <div class="row" id="mon-profil-index">
+      <div class="tab active col-sm-4">
+        <p>Mon armurerie</p>
+      </div>
+      <div class="tab col-sm-4">
+        <p>Mes infos</p>
+      </div>
+      <div class="tab col-sm-4">
+        <p>Mes réservations</p>
+      </div>
+    </div>
+    <div class="mes-armes">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+          <% @guns.each do |gun| %>
+                <div class="card-my-profile">
+                  <img src='<%= cl_image_path gun.photo, crop: :fill%>' class="product-image hidden-xs">
+                  <div class='product-body'>
+                    <h3><%= gun.name %></h3>
+                    <p><%= gun.category %></p>
+                    <p><%= gun.price %> €/jour</p>
+                  </div>
+                  <ul class="list-inline product-controls hidden-sm hidden-xs">
+                    <%= link_to edit_gun_path(gun), class: "edit-gun" do %>
+                      <li>Modifier l'annonce</li>
+                    <% end %>
+                    <%= link_to gun_path(gun),
+                        method: :delete,
+                        data: { confirm: "Are you sure?" } do %>
+                      <li><i class="fas fa-trash-alt" id="trash-gun"></i></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            </div>
+    </div>
+  </div>
+</div> -->
