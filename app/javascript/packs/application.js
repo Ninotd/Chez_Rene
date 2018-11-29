@@ -8,7 +8,9 @@ $(document).ready(function() {
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { initMapbox } from '../plugins/init_mapbox';
+import '../plugins/select_category';
 
 initMapbox();
 
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+
