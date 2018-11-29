@@ -1,14 +1,21 @@
-class ReviewsController < ApplicationController
-  before_action :find_booking, only: [ :new ]
+class BookingReviewsController < ApplicationController
+  before_action :find_booking, only: [:new,:create]
 
   def new
     @review = BookingReview.new
+    authorize @review
   end
 
   def create
     @review = BookingReview.new(booking_review_params)
     @review.booking = @booking
-    @review.save
+    authorize @review
+    if @review.save
+      redirect_to monprofil_guns_path
+    else
+      render :new
+    end
+
   end
 
   private
@@ -18,6 +25,6 @@ class ReviewsController < ApplicationController
   end
 
   def booking_review_params
-    params.require(:booking_review).permit(:rating, :content)
+    params.require(:booking_review).permit(:content, :rating)
   end
 end
