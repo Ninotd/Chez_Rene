@@ -33,7 +33,7 @@ class GunsController < ApplicationController
     @gun.user = current_user
     authorize @gun
     if @gun.save
-      redirect_to monprofil_guns_path
+      redirect_to monprofil_path
     else
       render :new
     end
@@ -45,7 +45,7 @@ class GunsController < ApplicationController
   def update
     @gun.update(gun_params)
     if @gun.save
-      redirect_to monprofil_guns_path
+      redirect_to monprofil_path
     else
       render :new
     end
@@ -53,15 +53,16 @@ class GunsController < ApplicationController
 
   def destroy
     @gun.destroy
-    redirect_to monprofil_guns_path
+    redirect_to monprofil_path
   end
 
   def monprofil
     @my_rentings = current_user.bookings
     if current_user.guns
-      @my_bookings = @guns.map do |gun|
-        gun.bookings
-      end
+      @my_bookings = current_user.guns.map { |gun| gun.bookings }.flatten
+    # @my_reviews = @my_bookings.map do |booking|
+    #     booking.booking_review
+    #   end
     end
   end
 

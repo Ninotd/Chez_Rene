@@ -23,7 +23,7 @@
             </ul>
           </div>
           <% if current_user == @gun.user %>
-            <%= link_to  "Voir cette arme dans mon profil", monprofil_guns_path, class: "btn btn-primary" %>
+            <%= link_to  "Voir cette arme dans mon profil", monprofil_path, class: "btn btn-primary" %>
           <% elsif user_signed_in? %>
             <%= link_to "Reserver cette arme", new_gun_booking_path(@gun), class: "btn btn-primary" %>
           <% else %>
