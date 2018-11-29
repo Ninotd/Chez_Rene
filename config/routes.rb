@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   root to: 'guns#topguns'
 
   resources :guns do
-    resources :bookings, only: [:new, :create]
-    collection do
-      get '/mon-profil', to: "guns#monprofil", as: :monprofil
+    resources :bookings, only: [:new, :create] do
+      resources :reviews, only: [ :index, :new, :create ]
     end
   end
+  get '/mon-profil', to: "guns#monprofil", as: :monprofil
 
   resources :bookings, only: [] do
     resources :booking_reviews, only: [:new, :create]
