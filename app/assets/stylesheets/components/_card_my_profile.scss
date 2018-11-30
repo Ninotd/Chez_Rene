@@ -13,6 +13,17 @@
   background-color: #eaeaea;
 }
 
+.armurerie-card {
+  display: flex;
+  height: 300px;
+  justify-content: space-between;
+  align-items: center;
+  height: 175px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  background-color: #f2eff0;
+}
+
 .product-image {
   width: 240px;
   height: 160px;

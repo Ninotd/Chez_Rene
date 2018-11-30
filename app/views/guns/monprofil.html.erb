@@ -64,7 +64,7 @@
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12 ">
                 <% @guns.each do |gun| %>
-                  <div class="card-my-profile">
+                  <div class="armurerie-card">
                     <%= link_to gun_path(gun) do %>
                       <img src='<%= cl_image_path gun.photo, crop: :fill%>' class="product-image hidden-xs">
                     <% end %>
@@ -115,29 +115,31 @@
                       <div class="card-my-profile">
                         <img src='<%= cl_image_path booking.gun.photo, crop: :fill%>' class="product-image hidden-xs">
                         <div class='product-body'>
-                          <p><%= booking.gun.name %></p>
-                          <p>Du <%= booking.start_date %></p>
-                          <p>au <%= booking.end_date %></p>
-                          <p>Pour <%= booking.amount %> €</p>
+                          <strong><p><%= booking.gun.name %></p></strong>
+                          <p>Cette arme est réservée du <%= booking.start_date %> au <%= booking.end_date %></p>
+                          <p>Pour un montant de <%= booking.amount %> €</p>
                         </div>
-                        <ul class="list-inline product-controls hidden-sm hidden-xs">
-                          <li>Statut : <%= booking.confirmed %></li>
+                        <div class="list-inline hidden-sm hidden-xs booking-controls" >
+                          <p>Statut : <%= booking.confirmed %></p>
+                          <div class="booking-status">
                             <% if booking.confirmed == "En attente" %>
                               <%= simple_form_for booking do |f| %>
-                               <%= f.submit "Accepter", class: "btn btn-primary" %>
+                               <%= f.submit "Accepter", class: "btn btn-primary accepted-button" %>
                                <input type="hidden" name="status" value="accept">
                               <% end %>
                               <%= simple_form_for booking do |f| %>
-                                 <%= f.submit "Refuser", class: "btn btn-primary" %>
+                                 <%= f.submit "Refuser", class: "btn btn-primary refused-button" %>
                                  <input type="hidden" name="status" value="refuse">
                               <% end %>
                             <% elsif booking.confirmed == "Acceptée" %>
                               <%= simple_form_for booking do |f| %>
-                               <%= f.submit "Refuser", class: "btn btn-primary" %>
+                               <%= f.submit "Refuser", class: "btn btn-primary refused-button" %>
                                <input type="hidden" name="status" value="refuse">
                              <% end %>
                             <% end %>
-                         </ul>
+
+                          </div>
+                         </div>
                       </div>
                     <% end %>
                   <% else %>
@@ -162,14 +164,15 @@
                         <p>au <%= rent.end_date %></p>
                         <p>Pour <%= rent.amount %> €</p>
                       </div>
-                      <ul class="list-inline product-controls hidden-sm hidden-xs">
-                          <li>Statut : <%= rent.confirmed %></li>
-                          <% if rent.end_date < Date.today %>
-                          <li>
-                          <div class="status">Finished</div>
-                          <%= link_to "add a review", new_booking_booking_review_path(rent) %> </li>
-                          <% end %>
-                      </ul>
+                      <div class="list-inline product-controls hidden-sm hidden-xs booking-controls">
+                          <p>Statut : <%= rent.confirmed %></p>
+                          <div class="booking-status">
+                            <% if rent.end_date < Date.today %>
+                              <div class="status">Passed date</div>
+                              <%= link_to "add a review", new_booking_booking_review_path(rent) %>
+                            <% end %>
+                          </div>
+                      </div>
                       </div>
                     <% end %>
                   <% else %>
