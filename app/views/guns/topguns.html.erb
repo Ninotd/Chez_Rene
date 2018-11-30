@@ -37,9 +37,10 @@
           <div class="card-description">
             <div class="card-name">
               <h2><%= gun.name %></h2>
+              <p><%= gun.average_rating unless gun.booking_reviews.blank? %></p>
             </div>
             <div class="card-price">
-              <%= gun.price %>
+              <%= gun.price %> €
               <p class="jour">/jour</p>
             </div>
           </div>

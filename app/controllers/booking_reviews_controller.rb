@@ -16,7 +16,6 @@ class BookingReviewsController < ApplicationController
       flash[:alert]= "Vous avez déjà laissé un avis pour cette réservation"
       redirect_to new_booking_booking_review_path(@booking)
     end
-
   end
 
   private

@@ -68,23 +68,6 @@ class GunsController < ApplicationController
     end
     @count_bookings_unanswered = count_items(@my_bookings)
     @count_rentings_unanswered = count_items(@my_rentings)
-
-
-    # Calcul de la note moyenne des guns d'un user
-
-    # user = current_user
-    # user_guns = user.guns
-    # user_guns.each do |gun|
-    #   gun_bookings = gun.bookings
-    #   sum_ratings = 0
-    #   count_ratings = 0
-    #   gun_bookings.each do |booking|
-    #     sum_rating += booking.booking_reviews.first.rating
-    #     count_rating += 1
-    #   end
-    #   average_rating = sum_rating / count_rating               comment faire pour sauvegarder la note moyenne ? A chaque itération sur un gun, kes compteurs retombent à 0
-    # end
-
   end
 
   def topguns
