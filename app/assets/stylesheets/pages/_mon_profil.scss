@@ -47,3 +47,122 @@
   margin-right: 10px;
   width: 171px;
 }
+.onglets-first {
+  width: 25%;
+}
+
+.nav-tabs.first {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.onglets-second {
+  width: 50%;
+}
+
+.onglets-content-second {
+
+}
+
+.nav-tabs.first {
+  a {
+    border-bottom-width: 5px;
+    color: #231F20;
+    font-weight: 500;
+    text-align: center;
+    &:hover {
+      color: #68585c;
+      border-bottom: 5px solid #231F20 !important;
+    }
+  }
+  li.active {
+    a {
+      background-color: #231F20 !important;
+      color: white;
+      border-bottom: 5px solid #231F20 !important;
+      &:hover {
+        border-bottom: 5px solid #231F20 !important;
+      }
+    }
+  }
+}
+
+.nav-tabs.second {
+  margin-bottom: 24px;
+  text-align: center;
+  border: none !important;
+  a {
+    color: #231F20;
+    border-bottom: 1px solid #231F20 !important;
+  }
+  li.active {
+    a {
+      border: 1px solid #231F20 !important;
+    }
+  }
+}
+
+.onglet-reservation {
+  position: relative;
+}
+
+.notifs {
+  position: absolute;
+  top: 1px;
+  right: 3px;
+  width: 15px;
+  height: 15px;
+  background: red;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.reviews-card {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+
+}
+
+.card-avis {
+  box-shadow: 0;
+}
+
+.rent-to i {
+  text-align: center;
+
+}
+
+.rent-to {
+  margin-top: 10px;
+}
+
+.loc-price {
+  margin-top: 10px;
+}
+
+.loc-date {
+  margin-top : 10px;
+}
+
+.price-avis {
+  text-align: center;
+  font-size : 36px;
+}
+
+.infos-avis {
+  text-align: center;
+}
+
+.rent-recap {
+  padding-left: 20px;
+}
+
+.title-review {
+  margin-top: 10px;
+}
+
+.review-par {
+  color: gray;
+  font-size: 17px;
+}
+

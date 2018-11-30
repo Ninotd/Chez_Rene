@@ -4,16 +4,17 @@
     <div>
 
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#infos" aria-controls="infos" role="tab" data-toggle="tab">Mes infos</a></li>
-        <li role="presentation"><a href="#reservations" aria-controls="reservations" role="tab" data-toggle="tab">Mes réservations <%= @count_rentings_unanswered %></a></li>
+      <ul class="nav nav-tabs first" role="tablist">
+        <li role="presentation" class="active onglets-first"><a href="#infos" aria-controls="infos" role="tab" data-toggle="tab" class="onglets-content">Mes infos</a></li>
+        <li role="presentation" class="onglets-first"><a href="#reservations" aria-controls="reservations" role="tab" data-toggle="tab" class="onglets-content">Mes réservations</a></li>
       </ul>
 
       <!-- Tab panes -->
       <div class="tab-content">
 
         <div role="tabpanel" class="tab-pane active" id="infos">
-          <p><%= current_user.email %></p>
+          <%= link_to "Mettre à jour mes informations", edit_user_registration_path %>
+          <%= cl_image_tag current_user.photo, height: 300, width: 400, crop: :fill %>
         </div>
 
         <div role="tabpanel" class="tab-pane" id="reservations">
@@ -32,6 +33,13 @@
                     </div>
                     <ul class="list-inline product-controls hidden-sm hidden-xs">
                         <li>Statut : <%= rent.confirmed %></li>
+                        <% if rent.end_date < Date.today %>
+                        <li>
+                        <div class="status">Finished</div>
+                        <% if rent.booking_reviews == [] %>
+                        <%= link_to "add a review", new_booking_booking_review_path(rent) %> </li>
+                        <% end %>
+                        <% end %>
                     </ul>
                     </div>
                   <% end %>
@@ -50,11 +58,15 @@
     <div>
 
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist" id="myTabs">
-        <li role="presentation" class="active"><a href="#armurerie" aria-controls="armurerie" role="tab" data-toggle="tab">Armurerie</a></li>
-        <li role="presentation"><a href="#infos" aria-controls="infos" role="tab" data-toggle="tab">Mes infos</a></li>
-        <li role="presentation"><a href="#reservations" aria-controls="reservations" role="tab" data-toggle="tab">Mes réservations</a></li>
-        <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Mes avis</a></li>
+      <ul class="nav nav-tabs first" role="tablist" id="myTabs">
+        <li role="presentation" class="active onglets-first"><a href="#armurerie" aria-controls="armurerie" role="tab" data-toggle="tab" class="onglets-content">Armurerie</a></li>
+        <li role="presentation" class="onglets-first"><a href="#infos" aria-controls="infos" role="tab" data-toggle="tab" class="onglets-content">Mes infos</a></li>
+        <li role="presentation" class="onglets-first"><a href="#reservations" aria-controls="reservations" role="tab" data-toggle="tab" class="onglets-content onglet-reservation">Mes réservations</a>
+        <% if @count_bookings_unanswered != 0 %>
+          <div class="notifs"></div>
+        <% end %>
+        </li>
+        <li role="presentation" class="onglets-first"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab" class="onglets-content">Mes avis</a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -99,9 +111,9 @@
         </div>
 
         <div role="tabpanel" class="tab-pane" id="reservations">
-          <ul class="nav nav-tabs" role="tablist" id="myTabs">
-            <li role="presentation" class="active"><a href="#mesresas" aria-controls="mesresas" role="tab" data-toggle="tab">Mes réservations <%= @count_bookings_unanswered %></a></li>
-            <li role="presentation"><a href="#meslocs" aria-controls="meslocs" role="tab" data-toggle="tab">Mes locations <%= @count_rentings_unanswered %></a></li>
+          <ul class="nav nav-tabs second" role="tablist" id="myTabs">
+            <li role="presentation" class="active onglets-second"><a href="#mesresas" aria-controls="mesresas" role="tab" data-toggle="tab" class="onglets-content-second">Mes réservations <%= "(#{@count_bookings_unanswered} en attente)" if @count_bookings_unanswered != 0 %></a></li>
+            <li role="presentation" class="onglets-second"><a href="#meslocs" aria-controls="meslocs" role="tab" data-toggle="tab" class="onglets-content-second">Mes locations</a></li>
           </ul>
 
           <div class="tab-content">
@@ -164,15 +176,16 @@
                         <p>au <%= rent.end_date %></p>
                         <p>Pour <%= rent.amount %> €</p>
                       </div>
-                      <div class="list-inline product-controls hidden-sm hidden-xs booking-controls">
-                          <p>Statut : <%= rent.confirmed %></p>
-                          <div class="booking-status">
-                            <% if rent.end_date < Date.today %>
-                              <div class="status">Passed date</div>
-                              <%= link_to "add a review", new_booking_booking_review_path(rent) %>
-                            <% end %>
-                          </div>
-                      </div>
+                      <ul class="list-inline product-controls hidden-sm hidden-xs">
+                          <li>Statut : <%= rent.confirmed %></li>
+                          <% if rent.end_date < Date.today %>
+                          <li>
+                          <div class="status">Finished</div>
+                          <% if rent.booking_reviews == [] %>
+                          <%= link_to "add a review", new_booking_booking_review_path(rent) %> </li>
+                          <% end %>
+                          <% end %>
+                      </ul>
                       </div>
                     <% end %>
                   <% else %>
@@ -189,8 +202,53 @@
           Vous n'avez pas d'avis sur vos locations
           <% else %>
             <div class="reviews-card">
-              <%= @my_reviews %>
-            </div>
+              <% @my_reviews.each do |review| %>
+               <div class="booking-recap">
+                 <div class="row">
+                   <div class="col-md-3 ">
+                     <div class="card-avis">
+                        <div class="card-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path review.booking.gun.photo, crop: :fill%>');">
+                       </div>
+                        <div class="card-body">
+                         <div class="card-category">
+                           <h2><%= review.booking.gun.category %></h2>
+                         </div>
+                         <div class="card-description">
+                           <div class="card-name">
+                             <h2><%= review.booking.gun.name %></h2>
+                           </div>
+                           <div class="card-price">
+                             <%= review.booking.gun.price %>
+                             <p class="jour">/jour</p>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                      <div class="col-md-4 ">
+                       <div class="rent-recap">
+                         <div class="rent-to">
+                          <p><strong> Cette arme a été louée à : </strong></p>
+                          <i> <%= review.booking.user.email %></i>
+                         </div>
+                         <div class="loc-date">
+                          <p class ="dates-avis"><strong>Dates de la location : </strong></p>
+                          <i class="infos-avis"> Du <%= review.booking.start_date %> Au <%= review.booking.end_date  %></i>
+                         </div>
+                         <div class="loc-price">
+                          <p> <strong>Pour un total de </strong> </p>
+                          <p class= "price-avis"> <%= review.booking.amount %> €</p>
+                         </div>
+                       </div>
+                     </div>
+                    <div class="col-md-5 ">
+                     <div class="review-content">
+                       <h3 class="title-review"> L'avis de <%= review.booking.user.email %> </h3>
+                       <p class= "review-par"><i> "<%= review.content %> </i>"</p>
+                       <h4>Note: <%= review.rating %></h4>
+                     </div>
+                    </div>
+               <% end %>
           <% end %>
         </div>
     </div>
