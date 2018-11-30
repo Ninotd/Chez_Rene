@@ -34,7 +34,12 @@ class Gun < ApplicationRecord
     reviews.each do |review|
       rating_sum += review.rating
     end
-    average = (rating_sum / reviews_count).round(2)
+    if reviews_count == 0
+      average_rating = 0
+    else
+      average_rating = (rating_sum / reviews_count).round(2)
+    end
+    return average_rating
   end
 
 end
