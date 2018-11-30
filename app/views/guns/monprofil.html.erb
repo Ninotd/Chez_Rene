@@ -6,7 +6,7 @@
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#infos" aria-controls="infos" role="tab" data-toggle="tab">Mes infos</a></li>
-        <li role="presentation"><a href="#reservations" aria-controls="reservations" role="tab" data-toggle="tab">Mes réservations</a></li>
+        <li role="presentation"><a href="#reservations" aria-controls="reservations" role="tab" data-toggle="tab">Mes réservations <%= @count_rentings_unanswered %></a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -95,8 +95,8 @@
 
         <div role="tabpanel" class="tab-pane" id="reservations">
           <ul class="nav nav-tabs" role="tablist" id="myTabs">
-            <li role="presentation" class="active"><a href="#mesresas" aria-controls="mesresas" role="tab" data-toggle="tab">Mes réservations</a></li>
-            <li role="presentation"><a href="#meslocs" aria-controls="meslocs" role="tab" data-toggle="tab">Mes locations</a></li>
+            <li role="presentation" class="active"><a href="#mesresas" aria-controls="mesresas" role="tab" data-toggle="tab">Mes réservations <%= @count_bookings_unanswered %></a></li>
+            <li role="presentation"><a href="#meslocs" aria-controls="meslocs" role="tab" data-toggle="tab">Mes locations <%= @count_rentings_unanswered %></a></li>
           </ul>
 
           <div class="tab-content">
