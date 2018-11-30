@@ -14,12 +14,13 @@
     <% else %>
       <button type="button" id="ajoute-arme-modal-button" data-toggle="modal" data-target="#AddWeaponModal">Ajouter une arme</button>
     <% end %>
-
+    <div class="louerunearme">
+      <%= link_to "Louer une arme", guns_path, class: "navbar-chez-rene-item navbar-chez-rene-link ajouter-arme", id: "ajouter-arme" %>
+    </div>
     <div class="dropdown">
       <button class="dropbtn" id="plus-infos">Plus d'infos <i class="fas fa-angle-down"></i></button>
       <div class="dropdown-content">
         <a href="#">Comment ça marche</a>
-        <a href="#">Louer une arme</a>
         <a href="#">Sécurité</a>
         <a href="#">Nos coordonnées</a>
       </div>
