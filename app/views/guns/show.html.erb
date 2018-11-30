@@ -21,7 +21,29 @@
               <li class = "weapon-info-li"><i class="show-icons fas fa-clock"></i><p class="weapon-info-category">Année de production : <%= @gun.year_of_production %></p></li>
               <li class = "weapon-info-li"><i class="show-icons fas fa-user"></i><p class="weapon-info-category">Propriétaire : <%= @gun.user.email %></p></li>
               <li class = "weapon-info-li"><i class="show-icons fas fa-location-arrow"></i><p class="weapon-info-category">Adresse : <%= @gun.address %></p></li>
-              <li class = "weapon-info-li"><i class="show-icons fas fa-smile"></i><p class="weapon-info-category">Avis  : <%=  %></p></li>
+              <li class = "weapon-info-li"><i class="show-icons fas fa-smile"></i><p class="weapon-info-category">Avis  :
+                  <% if @gun.average_rating == 1 %>
+                  <p><i class="far fa-star js-star"></i></p>
+                  <% elsif @gun.average_rating == 2 %>
+                  <p><i class="far fa-star js-star"></i>
+                     <i class="far fa-star js-star"></i></p>
+                  <% elsif @gun.average_rating == 3 %>
+                  <p><i class="far fa-star js-star"></i>
+                     <i class="far fa-star js-star"></i>
+                     <i class="far fa-star js-star"></i></p>
+                  <% elsif @gun.average_rating == 4 %>
+                  <p><i class="far fa-star js-star"></i>
+                     <i class="far fa-star js-star"></i>
+                     <i class="far fa-star js-star"></i>
+                     <i class="far fa-star js-star"></i></p>
+                  <% elsif @gun.average_rating == 5 %>
+                     <i class="far fa-star js-star"></i>
+                     <i class="far fa-star js-star"></i>
+                     <i class="far fa-star js-star"></i>
+                     <i class="far fa-star js-star"></i>
+                     <i class="far fa-star js-star"></i></p>
+                  <% end %>
+              </p></li>
             </ul>
           </div>
           <% if current_user == @gun.user %>

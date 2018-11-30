@@ -6,11 +6,13 @@
 </div>
 
 <div class="row form-booking">
-  <div class="col-sm-offset-4 col-sm-4">
+  <div class="col-sm-offset-4 col-sm-4" id="book-details-dates">
     <%= simple_form_for([@gun, @booking]) do |f| %>
       <%= f.input :start_date, as: :string, input_html: { class: "datepicker" } %>
       <%= f.input :end_date, as: :string, input_html: { class: "datepicker" } %>
-      <%= f.submit "Réserver", class: "btn btn-primary"%>
+      <div class="form-group submit">
+      <%= f.submit "Réserver", class: "btn btn-primary" %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -28,7 +28,8 @@
     <% if user_signed_in? %>
       <%= link_to "Mon profil", monprofil_path, class: "navbar-chez-rene-item navbar-chez-rene-link mon-profil-link" %>
       <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "logout-link") %>
-      <img src='https://img-4.linternaute.com/mpJIfSIY4U_FrOLSL4bUhIG0zNU=/1240x/smart/65b26c08079a4e258822ca4a79837ca3/ccmcms-linternaute/1933463.jpg' class="avatar-large"/>
+      <% default = "https://img-4.linternaute.com/mpJIfSIY4U_FrOLSL4bUhIG0zNU=/1240x/smart/65b26c08079a4e258822ca4a79837ca3/ccmcms-linternaute/1933463.jpg" %>
+      <%= cl_image_tag current_user.photo.url || default, class: "avatar-large" %>
     <% else %>
       <button type="button" id="sign-in-modal-button" data-toggle="modal" data-target="#ConnexionModal">Connexion</button>
       <%= link_to "S'inscrire", new_user_registration_path, class: "navbar-chez-rene-item navbar-chez-rene-link" %>
