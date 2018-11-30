@@ -30,10 +30,8 @@
             <button type="button" class="btn weapon-reserve-btn" data-toggle="modal" data-target="#ConnexionModal">Réserver cette arme</button>
           <% end %>
         </div>
-        <div class="weapon-image">
-          <%= image_tag 'https://images.unsplash.com/photo-1517651468335-5164984ba2c5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=12fc40a40c97ee5fc96d4e42cfd0f121&auto=format&fit=crop&w=2887&q=80' %>
+        <div class="weapon-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @gun.photo, crop: :fill%>');">
         </div>
-      </div>
     </div>
   </div>
 </div>

@@ -65,7 +65,9 @@
               <div class="col-xs-12 col-sm-12 col-md-12 ">
                 <% @guns.each do |gun| %>
                   <div class="card-my-profile">
-                    <img src='<%= cl_image_path gun.photo, crop: :fill%>' class="product-image hidden-xs">
+                    <%= link_to gun_path(gun) do %>
+                      <img src='<%= cl_image_path gun.photo, crop: :fill%>' class="product-image hidden-xs">
+                    <% end %>
                     <div class='product-body'>
                       <h3><%= gun.name %></h3>
                       <p><%= gun.category %></p>
@@ -74,6 +76,9 @@
                     <ul class="list-inline product-controls hidden-sm hidden-xs">
                       <%= link_to edit_gun_path(gun), class: "edit-gun" do %>
                         <li>Modifier l'annonce</li>
+                      <% end %>
+                      <%= link_to gun_path(gun) do %>
+                          <li><i class="fas fa-binoculars"></i></li>
                       <% end %>
                       <%= link_to gun_path(gun),
                           method: :delete,
