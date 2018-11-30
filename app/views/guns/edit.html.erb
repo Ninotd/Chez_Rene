@@ -4,9 +4,13 @@
   </div>
 </div>
 
-<%= link_to "Retourner sur mon profil", monprofil_path, class: "btn btn-primary edit-page-button" %>
 <div class="row form">
     <div class="col-sm-offset-4 col-sm-4">
+      <%= link_to monprofil_path do %>
+        <div class="back-to-index-button" id="edit-arme-back-button">
+          <p> <i class="fas fa-arrow-circle-left"></i> Back</p>
+        </div>
+      <% end %>
       <%= simple_form_for(@gun) do |f| %>
         <div class="form-group">
           <%= f.input :name, label: 'Nom de votre fusil', label_html: { class: 'labels' }%>

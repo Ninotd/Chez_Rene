@@ -23,7 +23,8 @@
 }
 
 .form {
-  margin-top: 20px;
+  margin-top: 0px;
+  padding-top: 20px;
   background-color: white
 }
 
@@ -45,4 +46,8 @@
   border-radius : 1px;
   font-family: "Open Sans", "Helvetica", "sans-serif";
   font-size: 14px;
+}
+
+.row.form {
+  position: relative;
 }

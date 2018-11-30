@@ -66,8 +66,7 @@ class GunsController < ApplicationController
       end
       @my_reviews = reviews.flatten
     end
-    @count_bookings_unanswered = count_items(@my_bookings)
-    @count_rentings_unanswered = count_items(@my_rentings)
+    @count_bookings_unanswered = count_bookings(@my_bookings)
   end
 
   def topguns
@@ -88,7 +87,7 @@ class GunsController < ApplicationController
     params.require(:gun).permit(:name, :category, :description, :price, :year_of_production, :address, :photo)
   end
 
-  def count_items(array)
+  def count_bookings(array)
     count = 0
     array.each do |element|
       if element.confirmed == "En attente"

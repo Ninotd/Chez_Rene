@@ -4,16 +4,17 @@
     <div>
 
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#infos" aria-controls="infos" role="tab" data-toggle="tab">Mes infos</a></li>
-        <li role="presentation"><a href="#reservations" aria-controls="reservations" role="tab" data-toggle="tab">Mes réservations <%= @count_rentings_unanswered %></a></li>
+      <ul class="nav nav-tabs first" role="tablist">
+        <li role="presentation" class="active onglets-first"><a href="#infos" aria-controls="infos" role="tab" data-toggle="tab" class="onglets-content">Mes infos</a></li>
+        <li role="presentation" class="onglets-first"><a href="#reservations" aria-controls="reservations" role="tab" data-toggle="tab" class="onglets-content">Mes réservations</a></li>
       </ul>
 
       <!-- Tab panes -->
       <div class="tab-content">
 
         <div role="tabpanel" class="tab-pane active" id="infos">
-          <p><%= current_user.email %></p>
+          <%= link_to "Mettre à jour mes informations", edit_user_registration_path %>
+          <%= cl_image_tag current_user.photo, height: 300, width: 400, crop: :fill %>
         </div>
 
         <div role="tabpanel" class="tab-pane" id="reservations">
@@ -32,6 +33,13 @@
                     </div>
                     <ul class="list-inline product-controls hidden-sm hidden-xs">
                         <li>Statut : <%= rent.confirmed %></li>
+                        <% if rent.end_date < Date.today %>
+                        <li>
+                        <div class="status">Finished</div>
+                        <% if rent.booking_reviews == [] %>
+                        <%= link_to "add a review", new_booking_booking_review_path(rent) %> </li>
+                        <% end %>
+                        <% end %>
                     </ul>
                     </div>
                   <% end %>
@@ -50,11 +58,15 @@
     <div>
 
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist" id="myTabs">
-        <li role="presentation" class="active"><a href="#armurerie" aria-controls="armurerie" role="tab" data-toggle="tab">Armurerie</a></li>
-        <li role="presentation"><a href="#infos" aria-controls="infos" role="tab" data-toggle="tab">Mes infos</a></li>
-        <li role="presentation"><a href="#reservations" aria-controls="reservations" role="tab" data-toggle="tab">Mes réservations</a></li>
-        <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Mes avis</a></li>
+      <ul class="nav nav-tabs first" role="tablist" id="myTabs">
+        <li role="presentation" class="active onglets-first"><a href="#armurerie" aria-controls="armurerie" role="tab" data-toggle="tab" class="onglets-content">Armurerie</a></li>
+        <li role="presentation" class="onglets-first"><a href="#infos" aria-controls="infos" role="tab" data-toggle="tab" class="onglets-content">Mes infos</a></li>
+        <li role="presentation" class="onglets-first"><a href="#reservations" aria-controls="reservations" role="tab" data-toggle="tab" class="onglets-content onglet-reservation">Mes réservations</a>
+        <% if @count_bookings_unanswered != 0 %>
+          <div class="notifs"></div>
+        <% end %>
+        </li>
+        <li role="presentation" class="onglets-first"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab" class="onglets-content">Mes avis</a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -99,9 +111,9 @@
         </div>
 
         <div role="tabpanel" class="tab-pane" id="reservations">
-          <ul class="nav nav-tabs" role="tablist" id="myTabs">
-            <li role="presentation" class="active"><a href="#mesresas" aria-controls="mesresas" role="tab" data-toggle="tab">Mes réservations <%= @count_bookings_unanswered %></a></li>
-            <li role="presentation"><a href="#meslocs" aria-controls="meslocs" role="tab" data-toggle="tab">Mes locations <%= @count_rentings_unanswered %></a></li>
+          <ul class="nav nav-tabs second" role="tablist" id="myTabs">
+            <li role="presentation" class="active onglets-second"><a href="#mesresas" aria-controls="mesresas" role="tab" data-toggle="tab" class="onglets-content-second">Mes réservations <%= "(#{@count_bookings_unanswered} en attente)" if @count_bookings_unanswered != 0 %></a></li>
+            <li role="presentation" class="onglets-second"><a href="#meslocs" aria-controls="meslocs" role="tab" data-toggle="tab" class="onglets-content-second">Mes locations</a></li>
           </ul>
 
           <div class="tab-content">
@@ -167,7 +179,9 @@
                           <% if rent.end_date < Date.today %>
                           <li>
                           <div class="status">Finished</div>
+                          <% if rent.booking_reviews == [] %>
                           <%= link_to "add a review", new_booking_booking_review_path(rent) %> </li>
+                          <% end %>
                           <% end %>
                       </ul>
                       </div>
