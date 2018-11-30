@@ -10,16 +10,20 @@
               <p> <i class="fas fa-arrow-circle-left"></i> Back</p>
             </div>
           <% end %>
-          <p class="weapon-info-name"><strong><%= @gun.name %></strong></p>
-          <p class="weapon-info-description"><%= @gun.description %></p>
-          <p class="weapon-info-price"><strong><%= @gun.price %>€</strong></p>
-          <p class="info-importante">Informations importantes :</p>
+          <div class="header-show">
+            <p class="weapon-info-name"><strong><%= @gun.name %></strong></p>
+            <p class="weapon-info-description"><%= @gun.description %></p>
+            <p class="weapon-info-price"><strong><%= @gun.price %>€</strong></p>
+
+            <!-- ajouter la photo -->
+          </div>
           <div class="weapon-main-info">
-            <ul>
-              <li><p class="weapon-info-category">Catégorie : <%= @gun.category %></p></li>
-              <li><p class="weapon-info-category">Année de production : <%= @gun.year_of_production %></p></li>
-              <li><p class="weapon-info-category">Propriétaire : <%= @gun.user.email %></p></li>
-              <li><p class="weapon-info-category">Adresse : <%= @gun.address %></p></li>
+            <ul class="weapon-info-list">
+              <li class = "weapon-info-li"><i class="show-icons fas fa-certificate"></i><p class="weapon-info-category">Catégorie : <%= @gun.category %></p></li>
+              <li class = "weapon-info-li"><i class="show-icons fas fa-clock"></i><p class="weapon-info-category">Année de production : <%= @gun.year_of_production %></p></li>
+              <li class = "weapon-info-li"><i class="show-icons fas fa-user"></i><p class="weapon-info-category">Propriétaire : <%= @gun.user.email %></p></li>
+              <li class = "weapon-info-li"><i class="show-icons fas fa-location-arrow"></i><p class="weapon-info-category">Adresse : <%= @gun.address %></p></li>
+              <li class = "weapon-info-li"><i class="show-icons fas fa-smile"></i><p class="weapon-info-category">Avis  : <%=  %></p></li>
             </ul>
           </div>
           <% if current_user == @gun.user %>
