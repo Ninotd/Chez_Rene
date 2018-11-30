@@ -34,7 +34,7 @@ class Gun < ApplicationRecord
     reviews.each do |review|
       rating_sum += review.rating
     end
-    average = rating_sum / reviews_count
+    average = (rating_sum / reviews_count).round(2)
   end
 
 end

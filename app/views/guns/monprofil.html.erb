@@ -77,7 +77,9 @@
               <div class="col-xs-12 col-sm-12 col-md-12 ">
                 <% @guns.each do |gun| %>
                   <div class="card-my-profile">
-                    <img src='<%= cl_image_path gun.photo, crop: :fill%>' class="product-image hidden-xs">
+                    <%= link_to gun_path(gun) do %>
+                      <img src='<%= cl_image_path gun.photo, crop: :fill%>' class="product-image hidden-xs">
+                    <% end %>
                     <div class='product-body'>
                       <h3><%= gun.name %></h3>
                       <p><%= gun.category %></p>
@@ -86,6 +88,9 @@
                     <ul class="list-inline product-controls hidden-sm hidden-xs">
                       <%= link_to edit_gun_path(gun), class: "edit-gun" do %>
                         <li>Modifier l'annonce</li>
+                      <% end %>
+                      <%= link_to gun_path(gun) do %>
+                          <li><i class="fas fa-binoculars"></i></li>
                       <% end %>
                       <%= link_to gun_path(gun),
                           method: :delete,
@@ -195,8 +200,53 @@
           Vous n'avez pas d'avis sur vos locations
           <% else %>
             <div class="reviews-card">
-              <%= @my_reviews %>
-            </div>
+              <% @my_reviews.each do |review| %>
+               <div class="booking-recap">
+                 <div class="row">
+                   <div class="col-md-3 ">
+                     <div class="card-avis">
+                        <div class="card-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path review.booking.gun.photo, crop: :fill%>');">
+                       </div>
+                        <div class="card-body">
+                         <div class="card-category">
+                           <h2><%= review.booking.gun.category %></h2>
+                         </div>
+                         <div class="card-description">
+                           <div class="card-name">
+                             <h2><%= review.booking.gun.name %></h2>
+                           </div>
+                           <div class="card-price">
+                             <%= review.booking.gun.price %>
+                             <p class="jour">/jour</p>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                      <div class="col-md-4 ">
+                       <div class="rent-recap">
+                         <div class="rent-to">
+                          <p><strong> Cette arme a été louée à : </strong></p>
+                          <i> <%= review.booking.user.email %></i>
+                         </div>
+                         <div class="loc-date">
+                          <p class ="dates-avis"><strong>Dates de la location : </strong></p>
+                          <i class="infos-avis"> Du <%= review.booking.start_date %> Au <%= review.booking.end_date  %></i>
+                         </div>
+                         <div class="loc-price">
+                          <p> <strong>Pour un total de </strong> </p>
+                          <p class= "price-avis"> <%= review.booking.amount %> €</p>
+                         </div>
+                       </div>
+                     </div>
+                    <div class="col-md-5 ">
+                     <div class="review-content">
+                       <h3 class="title-review"> L'avis de <%= review.booking.user.email %> </h3>
+                       <p class= "review-par"><i> "<%= review.content %> </i>"</p>
+                       <h4>Note: <%= review.rating %></h4>
+                     </div>
+                    </div>
+               <% end %>
           <% end %>
         </div>
     </div>
