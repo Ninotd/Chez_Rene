@@ -189,8 +189,8 @@
               <% @my_reviews.each do |review| %>
                <div class="booking-recap">
                  <div class="row">
-                   <div class="col-xs-12 col-sm-6 col-md-3 ">
-                     <div class="card">
+                   <div class="col-md-3 ">
+                     <div class="card-avis">
                         <div class="card-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path review.booking.gun.photo, crop: :fill%>');">
                        </div>
                         <div class="card-body">
@@ -208,18 +208,31 @@
                          </div>
                        </div>
                      </div>
-                      <div class="col-xs-12 col-sm-6 col-md-4 ">
-                       <p> Loué à <%= review.booking.user.email %></p>
-                       <p> du <%= review.booking.start_date %> au <%= review.booking.end_date  %></p>
-                       <p> pour un total de review.booking.price</p>
+                   </div>
+                      <div class="col-md-4 ">
+                       <div class="rent-recap">
+                         <div class="rent-to">
+                          <p><strong> Cette arme a été louée à : </strong></p>
+                          <i> <%= review.booking.user.email %></i>
+                         </div>
+                         <div class="loc-date">
+                          <p class ="dates-avis"><strong>Dates de la location : </strong></p>
+                          <i class="infos-avis"> Du <%= review.booking.start_date %> Au <%= review.booking.end_date  %></i>
+                         </div>
+                         <div class="loc-price">
+                          <p> <strong>Pour un total de </strong> </p>
+                          <p class= "price-avis"> <%= review.booking.amount %> €</p>
+                         </div>
+                       </div>
                      </div>
-               <div class="review-content">
-                 <h3> L'avis de <%= review.booking.user.email %> </h3>
-                 <p><%= review.content %></p>
-                 <h4><%= review.rating %></h4>
-                </div>
+                    <div class="col-md-5 ">
+                     <div class="review-content">
+                       <h3 class="title-review"> L'avis de <%= review.booking.user.email %> </h3>
+                       <p class= "review-par"><i> "<%= review.content %> </i>"</p>
+                       <h4>Note: <%= review.rating %></h4>
+                     </div>
+                    </div>
                <% end %>
-            </div>
           <% end %>
         </div>
     </div>
