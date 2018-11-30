@@ -28,6 +28,14 @@
 
 .weapon-info-name {
   font-size: 32px;
+  margin-bottom: 5px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.weapon-info-price {
+  text-align: right;
+  padding-right: 30px;
 }
 
 .weapon-info-description {
@@ -48,4 +56,19 @@
   text-decoration: underline;
 }
 
+.weapon-info-list {
+  list-style-type: none;
+  padding-inline-start: 5px
+}
+ .weapon-info-li {
+  display: flex;
+}
+ .show-icons {
+  margin-right : 10px;
+  padding-top: 7px;
+  font-size :10px;
+}
+ .separation {
+  color: black
+}
 

@@ -186,7 +186,39 @@
           Vous n'avez pas d'avis sur vos locations
           <% else %>
             <div class="reviews-card">
-              <%= @my_reviews %>
+              <% @my_reviews.each do |review| %>
+               <div class="booking-recap">
+                 <div class="row">
+                   <div class="col-xs-12 col-sm-6 col-md-3 ">
+                     <div class="card">
+                        <div class="card-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path review.booking.gun.photo, crop: :fill%>');">
+                       </div>
+                        <div class="card-body">
+                         <div class="card-category">
+                           <h2><%= review.booking.gun.category %></h2>
+                         </div>
+                         <div class="card-description">
+                           <div class="card-name">
+                             <h2><%= review.booking.gun.name %></h2>
+                           </div>
+                           <div class="card-price">
+                             <%= review.booking.gun.price %>
+                             <p class="jour">/jour</p>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                      <div class="col-xs-12 col-sm-6 col-md-4 ">
+                       <p> Loué à <%= review.booking.user.email %></p>
+                       <p> du <%= review.booking.start_date %> au <%= review.booking.end_date  %></p>
+                       <p> pour un total de review.booking.price</p>
+                     </div>
+               <div class="review-content">
+                 <h3> L'avis de <%= review.booking.user.email %> </h3>
+                 <p><%= review.content %></p>
+                 <h4><%= review.rating %></h4>
+                </div>
+               <% end %>
             </div>
           <% end %>
         </div>
