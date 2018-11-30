@@ -67,6 +67,17 @@
   margin: 10px 5px;
 }
 
+.accepted-button:hover{
+  background-color: white;
+  color: #1cef31;
+  border-color: #1cef31;
+}
+
+.refused-button:hover{
+  background-color: white;
+  color: #C82233;
+  border-color: #C82233;
+  margin: 0 auto;
 #edit-arme-back-button {
   position: absolute;
   left: -200px;
